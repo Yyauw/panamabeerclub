@@ -7,6 +7,20 @@
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+  --primary-accent: #ffd414;
+  --secondary: #2653a6;
+  --background-blue: rgb(1, 31, 82);
+  --text-grey: rgba(255, 255, 255, 1);
+  --text-grey-dark: rgba(0, 0, 0, 1);
+  --bg-buttons-blue: rgba(38, 83, 166, 0.8);
+  --background-brown-light: rgba(255, 212, 20, 0.4);
+  --text-black: rgba(10, 10, 10, 1);
+  --bg-black-light: rgba(10, 10, 10, 0.722);
+  --bg-grey-dark: rgba(134, 134, 134, 1);
+  --bg-dark-black: rgba(0, 0, 0, 0.5);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -30,5 +44,624 @@ body {
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+}
+
+/* estilos del menu */
+.navbar-start {
+  .title-web {
+    margin-left: 105px;
+    h1 {
+      font-weight: 700;
+      font-size: 48px;
+      line-height: 72px;
+    }
+    span {
+      color: var(--primary-accent);
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    .title-web {
+      margin-left: 0;
+    }
+    .title-web h1 {
+      font-size: 30px;
+    }
+  }
+}
+
+.menu {
+  font-size: 32px;
+  font-weight: 400;
+  color: white;
+  line-height: 48px;
+  letter-spacing: 2px;
+
+  .item-navegacion-login {
+    color: var(--primary-accent);
+  }
+}
+/***********************************/
+
+/* estilos del hero */
+.hero-description {
+  display: flex;
+  justify-content: center;
+  margin-left: 128px;
+  padding-right: 128px;
+  margin-top: 120px;
+  h2 {
+    font-size: 64px;
+    font-weight: 700;
+    color: white;
+    line-height: 96px;
+    letter-spacing: 5%;
+    width: 75%;
+
+    span {
+      color: var(--primary-accent);
+    }
+  }
+
+  p {
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 36px;
+    color: white;
+    width: 85%;
+  }
+
+  .hero-description-content {
+    width: 60%;
+  }
+
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+    margin-left: 0;
+    padding-right: 0;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    h2 {
+      font-size: 40px;
+      line-height: 72px;
+      width: 100%;
+    }
+
+    p {
+      font-size: 20px;
+      line-height: 36px;
+      width: 100%;
+    }
+
+    .hero-image {
+      display: none;
+    }
+
+    .hero-description-content {
+      width: 90%;
+    }
+  }
+}
+
+.btn-hero {
+  background-color: var(--primary-accent);
+  font-size: 24px;
+  line-height: 36px;
+  font-weight: 400;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 5px;
+}
+
+.btn-learmore-hero {
+  font-size: 24px;
+  line-height: 36px;
+  font-weight: 700;
+  color: var(--primary-accent);
+  text-decoration: underline;
+}
+/**************************************/
+/*banner socios */
+.banner-socios {
+  padding-top: 35px;
+  padding-bottom: 35px;
+  background-color: var(--primary-accent);
+  display: flex;
+  justify-content: center;
+  gap: 100px;
+
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+/**************************************/
+
+/*estilos de la seccion que hacemos */
+.section-quehacemos {
+  background-color: var(--background-blue);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 60px;
+  padding-bottom: 60px;
+
+  .item-quehacemos {
+    width: 75%;
+    display: flex;
+    padding-top: 70px;
+    gap: 20px;
+
+    h4 {
+      color: var(--primary-accent);
+      font-weight: 700;
+      font-size: 64px;
+      line-height: 96px;
+    }
+
+    p {
+      font-weight: 300;
+      font-size: 32px;
+      line-height: 48px;
+      color: var(--text-grey);
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    .item-quehacemos {
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+  }
+}
+
+/**************************************/
+
+/*estilos de la seccion de comopedir */
+
+.section-comopedir {
+  background-color: var(--primary-accent);
+  padding-top: 25px;
+  text-align: center;
+  padding-bottom: 100px;
+
+  div h4 {
+    font-weight: 700;
+    font-size: 48px;
+    line-height: 72px;
+    margin: auto;
+  }
+
+  .comopedir-pasos {
+    padding-top: 100px;
+    display: flex;
+    justify-content: space-evenly;
+
+    div {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    div .comopedir-description {
+      h5 {
+        font-weight: 700;
+        font-size: 40px;
+        line-height: 60px;
+      }
+
+      p {
+        font-weight: 300;
+        font-size: 24px;
+        line-height: 36px;
+        color: var(--text-grey-dark);
+        text-transform: capitalize;
+      }
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    .comopedir-pasos {
+      flex-direction: column;
+      gap: 50px;
+      padding: 3px;
+    }
+  }
+}
+
+/**************************************/
+
+/*estilos de la seccion de pricing */
+.section-pricing {
+  padding-top: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .pricing-title {
+    text-align: center;
+    h4 {
+      font-weight: 700;
+      color: white;
+      line-height: 72px;
+      font-size: 48px;
+    }
+    p {
+      text-transform: capitalize;
+      font-size: 36px;
+      line-height: 54px;
+      font-weight: 300;
+      color: var(--text-grey);
+    }
+  }
+
+  .pricing-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(33.33%, 1fr));
+    width: 100%;
+    justify-items: center;
+
+    .pricing-card-blue {
+      margin-top: 30px;
+      border-radius: 25px;
+      background-color: var(--background-blue);
+      color: white;
+      padding: 40px;
+      height: 600px;
+      width: 85%;
+
+      div {
+        text-align: center;
+        margin-bottom: 50px;
+      }
+      div h5 {
+        font-weight: 700;
+        font-size: 40px;
+        line-height: 60px;
+      }
+
+      div p {
+        padding-top: 20px;
+      }
+
+      div ul {
+        padding-top: 40px;
+      }
+
+      div ul li {
+        padding-left: 30px;
+        padding-bottom: 20px;
+        display: flex;
+        gap: 10px;
+
+        span {
+          text-transform: capitalize;
+        }
+      }
+
+      div .btn-pricing {
+        border-radius: 5px;
+        background-color: var(--bg-buttons-blue);
+        padding: 10px 30px;
+        font-size: 24px;
+      }
+    }
+
+    .pricing-card-brown {
+      margin-top: 30px;
+      border-radius: 25px;
+      background-color: var(--background-brown-light);
+      color: white;
+      padding: 40px;
+      height: 600px;
+      width: 85%;
+
+      div {
+        text-align: center;
+        margin-bottom: 50px;
+      }
+      div h5 {
+        font-weight: 700;
+        font-size: 40px;
+        line-height: 60px;
+      }
+
+      div p {
+        padding-top: 20px;
+      }
+
+      div ul {
+        padding-top: 40px;
+      }
+
+      div ul li {
+        padding-left: 30px;
+        padding-bottom: 20px;
+        display: flex;
+        gap: 10px;
+
+        span {
+          text-transform: capitalize;
+        }
+      }
+
+      div .btn-pricing {
+        border-radius: 5px;
+        background-color: var(--primary-accent);
+        color: var(--text-black);
+        padding: 10px 30px;
+        font-size: 24px;
+      }
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    .pricing-cards {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .pricing-card-blue,
+    .pricing-card-brown {
+      width: 90%;
+    }
+  }
+}
+
+/**************************************/
+
+/*estilos de la seccion de tomar encuesta */
+.section-takesurvey {
+  padding: 50px;
+  margin-bottom: 100px;
+  text-align: center;
+  h4 {
+    padding-top: 100px;
+    font-weight: 700;
+    font-size: 64px;
+    line-height: 96px;
+    color: white;
+    span {
+      color: var(--primary-accent);
+    }
+  }
+
+  p {
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 48px;
+    color: var(--text-grey);
+  }
+
+  button {
+    margin-top: 50px;
+    border-radius: 5px;
+    background-color: var(--primary-accent);
+    padding: 10px 100px;
+    font-size: 24px;
+    color: var(--text-black);
+  }
+
+  button:hover {
+    background-color: var(--bg-buttons-blue);
+  }
+}
+
+/**************************************/
+
+/*estilos de la seccion de footer*/
+
+.section-footer {
+  background-color: var(--primary-accent);
+  padding-top: 50px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(25%, 1fr));
+  justify-items: center;
+  padding-bottom: 50px;
+
+  .footer-sections {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(33.33%, 1fr));
+    width: 100%;
+
+    div {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  div h2 {
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 72px;
+    color: white;
+
+    span {
+      color: var(--text-black);
+    }
+  }
+
+  div h3 {
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 48px;
+    text-transform: uppercase;
+  }
+
+  div p {
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 30px;
+  }
+
+  @media screen and (max-width: 768px) {
+    grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
+
+    .footer-sections {
+      padding: 10px 20px;
+      grid-template-columns: repeat(auto-fit, minmax(50%, 1fr));
+
+      div {
+        display: flex;
+        flex-direction: column;
+      }
+    }
+  }
+}
+
+.section-auth {
+  background-image: url("../public/images/bg-login.svg");
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 100px;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  .auth-container {
+    text-align: center;
+    background-color: var(--bg-black-light);
+    padding: 50px;
+    border-radius: 50px;
+    h2 {
+      font-weight: 700;
+      font-size: 64px;
+      line-height: 96px;
+      color: white;
+    }
+
+    p {
+      font-weight: 300;
+      font-size: 25px;
+      color: var(--text-grey);
+      line-height: 48px;
+    }
+
+    div a p {
+      color: white;
+      font-size: 20px;
+      line-height: 39px;
+      text-decoration: underline;
+      margin-top: 20px;
+    }
+
+    .btn-auth {
+      border-radius: 25px;
+      padding: 5px 120px;
+      background-color: var(--primary-accent);
+      font-size: 20px;
+      font-weight: 800;
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+
+    .btn-google {
+      margin: 20px auto;
+      border-radius: 25px;
+      border-top: 3px solid var(--bg-grey-dark);
+      border-left: 3px solid var(--bg-grey-dark);
+      border-right: 3px solid var(--bg-grey-dark);
+      border-bottom: 3px solid var(--bg-grey-dark);
+      padding: 5px 120px;
+      background-color: var(--bg-dark-black);
+      font-weight: 300;
+      display: flex;
+      gap: 10px;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      p {
+        font-size: 20px;
+        line-height: 42px;
+      }
+    }
+
+    div p {
+      font-size: 20px;
+      line-height: 39px;
+      a span {
+        text-decoration: underline;
+      }
+    }
+
+    .auth-inputs {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(50%, 1fr));
+      width: 100%;
+
+      label {
+        padding: 10px;
+      }
+    }
+
+    .auth-terms-checkbox {
+      display: flex;
+      justify-content: center;
+      gap: 5px;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+    gap: 50px;
+    padding: 10px;
+    margin-bottom: 40vh;
+
+    .auth-container {
+      padding: 20px;
+      border-radius: 25px;
+      h2 {
+        font-size: 40px;
+        line-height: 72px;
+      }
+
+      p {
+        font-size: 20px;
+        line-height: 36px;
+      }
+
+      div a p {
+        color: white;
+        font-size: 20px;
+        line-height: 39px;
+        text-decoration: underline;
+        margin-top: 20px;
+      }
+
+      .btn-auth {
+        border-radius: 25px;
+        padding: 5px 120px;
+        background-color: var(--primary-accent);
+        font-size: 20px;
+        font-weight: 800;
+        margin-top: 20px;
+        margin-bottom: 20px;
+      }
+
+      .btn-google {
+        padding: 10px 10px;
+        p {
+          width: 100%;
+          font-size: 20px;
+        }
+      }
+
+      div p {
+        font-size: 20px;
+        line-height: 39px;
+        a span {
+          text-decoration: underline;
+        }
+      }
+
+      .auth-inputs {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
+        width: 100%;
+      }
+    }
   }
 }
