@@ -1,5 +1,11 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+<<<<<<< HEAD
+
 .env
+
+=======
+.env
+>>>>>>> fd4c8b58ec264d01f90c4e2f30ac683c121d35cf
 # dependencies
 /node_modules
 /.pnp
