@@ -1,5 +1,3 @@
-import ReactModal from "react-modal";
-
 const Modal = ({ modalRef, content }) => {
   return (
     <dialog id="my_modal_1" className="modal" ref={modalRef}>
