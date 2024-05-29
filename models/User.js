@@ -5,9 +5,13 @@ const User = mongoose.Schema(
     uid: String,
     name: String,
     lastName: String,
-    birthday: Date,
+    birthDate: Date,
     email: String,
     phoneNumber: Number,
+    userType: {
+      type: String,
+      enum: ["client", "admin", "delivery"],
+    },
     preference: {
       style: [String],
       ibu: Number,
