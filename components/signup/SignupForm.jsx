@@ -4,18 +4,30 @@ import Image from "next/image";
 import Link from "next/link";
 import { validateForm } from "@/lib/formHelper";
 import Modal from "../Modal";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
+import { useRouter } from "next/navigation";
 
-export default function SignupForm({ createUser }) {
+export default function SignupForm({ createUser, redirect }) {
+  const router = useRouter();
   const [form, setForm] = useState({
     name: "",
     lastName: "",
     email: "",
+    password: "",
     phoneNumber: "",
     birthDate: "",
   });
   const modalRef = useRef();
   const [modalContent, setModalContent] = useState("");
+
+  //si el usuario ya tiene una session lo redirige
+  useEffect(() => {
+    const session = localStorage.getItem("userData");
+    if (session) {
+      console.log(atob(session));
+      redirect(atob(session));
+    }
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -24,23 +36,26 @@ export default function SignupForm({ createUser }) {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(form);
     if (validateForm(form, setModalContent, modalRef)) {
       //TODO sacar las respuestas de la encuesta del usuario del localhost si hay
       //crear la session del usuario despues de haberlo registrado
-      createUser(form);
-      setModalContent("Cuenta creada");
+      const createUserResponse = await createUser(form);
+      if (!createUserResponse.includes("auth")) {
+        setModalContent("Cuenta creada con exito");
+        modalRef.current.showModal();
+        //encriptamos la data
+        const dataEncrypted = btoa(createUserResponse);
+        //console.log(dataEncrypted);
+        localStorage.setItem("userData", dataEncrypted);
+        //console.log(atob(dataEncrypted));
+        setTimeout(() => router.push("/user"), 3000);
+        return;
+      }
+      setModalContent(createUserResponse);
       modalRef.current.showModal();
-      //   setForm({
-      //     name: "",
-      //     lastName: "",
-      //     email: "",
-      //     phoneNumber: "",
-      //     birthDate: "",
-      //   });
-      console.log("creando usuario!!");
     }
   };
   return (
@@ -75,7 +90,7 @@ export default function SignupForm({ createUser }) {
           </label>
           <label className="input input-bordered flex items-center gap-2 m-1">
             <input
-              type="text"
+              type="email"
               className="grow"
               placeholder="Email"
               name="email"
@@ -91,7 +106,10 @@ export default function SignupForm({ createUser }) {
               className="grow"
               placeholder="Password"
               name="password"
+              minLength="6"
               required
+              value={form.password}
+              onChange={handleChange}
             />
           </label>
           <label className="input input-bordered flex items-center gap-2 m-1">

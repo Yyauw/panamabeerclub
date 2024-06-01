@@ -4,18 +4,55 @@ import connectDB from "@/lib/connectDB";
 import Address from "@/models/Address";
 import logo from "@/public/images/logo.svg";
 import Image from "next/image";
-import googleicon from "@/public/images/Google.svg";
 import bglogin from "@/public/images/bg-login.svg";
+import LoginForm from "@/components/login/LoginForm";
+import { redirect } from "next/navigation";
 
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "@/lib/firebaseConfig";
 export default function LoginPage() {
-  const fetchUsers = async () => {
+  // const fetchUsers = async () => {
+  //   await connectDB();
+  //   const users = await User.find({}).populate({
+  //     path: "address",
+  //   });
+  //   console.log(users[0]);
+  // };
+  // //fetchUsers();
+
+  const redirectExistingUser = async (session) => {
+    "use server";
     await connectDB();
-    const users = await User.find({}).populate({
-      path: "address",
-    });
-    console.log(users[0]);
+    const userData = JSON.parse(session);
+    const user = await User.findById(userData._id).exec();
+    console.log(user);
+    if (user.userType === "admin") redirect("/admin");
+    if (user.userType === "admin") redirect("/user");
   };
-  //fetchUsers();
+
+  const validateUser = async (userData) => {
+    "use server";
+    const { email, password } = userData;
+    const loginResponse = signInWithEmailAndPassword(auth, email, password)
+      .then(async (userCredential) => {
+        // Signed in
+        const userFB = userCredential.user;
+        console.log("logged in!");
+        await connectDB();
+        const user = await User.findOne({ uid: userFB.uid }).exec();
+        console.log(user);
+        return JSON.stringify(user);
+        // ...
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorMessage);
+        return "Incorrect email or password";
+      });
+    return loginResponse;
+  };
+
   return (
     <>
       <div
@@ -33,41 +70,10 @@ export default function LoginPage() {
         <div>
           <Image src={logo} alt="Panama Beer Club" />
         </div>
-        <div className="auth-container">
-          <h2>Login To Your Account</h2>
-          <p>Start Tasting...</p>
-          <div>
-            <label className="input input-bordered flex items-center gap-2 mb-3">
-              <input type="text" className="grow" placeholder="Email" />
-            </label>
-            <label className="input input-bordered flex items-center gap-2">
-              <input type="password" className="grow" placeholder="Password" />
-            </label>
-          </div>
-          <div>
-            <Link href={"/auth/login"}>
-              <p>Forgot Your Password?</p>
-            </Link>
-          </div>
-          <button className="btn-auth">Login</button>
-
-          <p>Or</p>
-
-          <button className="btn-google">
-            <Image src={googleicon} alt="Google" />
-            <p>Continue with Google</p>
-          </button>
-
-          <div>
-            <p>
-              Don&apos;t have an account?
-              <br />
-              <Link href={"/signup"}>
-                <span>Sign Up</span>
-              </Link>
-            </p>
-          </div>
-        </div>
+        <LoginForm
+          validateUser={validateUser}
+          redirect={redirectExistingUser}
+        ></LoginForm>
       </div>
     </>
   );
