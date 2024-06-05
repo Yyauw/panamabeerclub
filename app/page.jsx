@@ -1,6 +1,6 @@
 import Micomponente from "@/components/Micomponente";
 import Image from "next/image";
-import señor_cerveza from "@/public/images/señor-cerveza.svg";
+import señor_cerveza from "@/public/images/heroimage.png";
 import Link from "next/link";
 import ranadorada from "@/public/images/ranadorada.svg";
 import tresgatos from "@/public/images/tresgatos.svg";
@@ -19,7 +19,6 @@ import Navbar from "@/components/home/Navbar";
 export default function Home() {
   return (
     <main>
-      <Navbar></Navbar>
       <div
         style={{
           position: "absolute",
@@ -36,48 +35,34 @@ export default function Home() {
           objectFit="cover"
         />
       </div>
-      <section className="hero-description relative z-10">
-        <div className="hero-description-content">
-          <div>
-            <h2>
-              Hand-Craft Beer in <span>One Click</span>
-            </h2>
-            <p>
-              Welcome to PanamaBeerClub, Elevate your beer journey with our
-              exclusive subscription service. Join the community of beer
-              enthusiasts and embark on a flavor-filled adventure with every
-              bottle.
-            </p>
+      <section className=" my-auto pb-20 h-screen">
+        <Navbar></Navbar>
+        <div className="hero h-[100%]">
+          <div className="hero-content flex-col lg:flex-row-reverse mr-auto">
+            <div className="object-none shadow-2xl absolute bottom-0 right-0 w-[44vw]">
+              <Image src={señor_cerveza} layout="responsive" />
+            </div>
+            <div className="max-w-[30vw] my-auto ms-10">
+              <h1 className="text-5xl font-bold">
+                Hand-Craft Beer <br />
+                In <span className="text-primary">One Click</span>
+              </h1>
+              <p className="py-6">
+                <span className="text-xl">
+                  Welcome to PanamaBeerClub, Elevate your beer journey with our
+                  exclusive subscription service. Join the community of beer
+                  enthusiasts and embark on a flavor-filled adventure with every
+                  bottle.
+                </span>
+              </p>
+              <Link href="/survey" className="btn btn-primary">
+                Get Started
+              </Link>
+            </div>
           </div>
-          <div
-            style={{
-              display: "flex",
-              gap: "1rem",
-              marginTop: "1.5rem",
-              alignItems: "center",
-            }}
-          >
-            <Link href="/" className="btn-learmore-hero">
-              <h3 className="">Learn More</h3>
-            </Link>
-            <button className="btn-hero">Start Now</button>
-          </div>
-        </div>
-
-        <div
-          style={{
-            width: "40%",
-            display: "flex",
-            justifyContent: "center",
-          }}
-        >
-          <Image
-            className="hero-image"
-            src={señor_cerveza}
-            alt="Cerveza Artesanal"
-          />
         </div>
       </section>
+
       <div className="section-cervecerias relative z-10">
         <div className="banner-socios grid grid-cols-3">
           <Image src={ranadorada} alt="Rana Dorada" height={115.49} />

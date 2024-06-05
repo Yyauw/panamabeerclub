@@ -7,9 +7,11 @@ import ProgressBar from "@/components/survey/ProgressBar";
 export default function surveyPage() {
   return (
     <>
-      <section className="h-screen  flex items-center bg-secondary/10">
+      <section className="h-screen  flex items-center bg-secondary/20">
         <div className="border-0  rounded-2xl w-[80vw] p-8 mx-auto">
-          <div className="absolute top-0 left-0 z-10 m-6">salir gei</div>
+          <Link href="/" className="absolute top-0 left-0 z-10 m-6 font-bold">
+            Go Back
+          </Link>
           <div className="progress-wrapper flex">
             <ProgressBar></ProgressBar>
           </div>

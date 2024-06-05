@@ -1,9 +1,11 @@
 import Link from "next/link";
+import Image from "next/image";
+import logo from "@/public/images/logo.svg";
 
 export default function Navbar() {
   return (
-    <nav className=" text-white p-4 relative z-10">
-      <div className="navbar bg-transparent">
+    <nav className=" text-white relative z-10">
+      <div className="navbar bg-transparent grid grid-cols-2">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -30,38 +32,54 @@ export default function Navbar() {
                 <Link href="/">Home</Link>
               </li>
               {/* 
-                            <li>
-                                <Link href="/pages/sobrenosotros">About</Link>
-                            </li>
-                            <li>
-                                <Link href="/pages/planes">Princing</Link>
-                            </li> 
-                            */}
+                          <li>
+                              <Link href="/pages/sobrenosotros">About</Link>
+                          </li>
+                          <li>
+                              <Link href="/pages/planes">Princing</Link>
+                          </li> 
+                          */}
               <li className="item-navegacion-login">
                 <Link href="/login">Login</Link>
               </li>
             </ul>
           </div>
           <div className="title-web">
-            <h1>
+            <Link href="/" className="text-xl md:hidden">
+              Panama<span className="text-primary">BeerClub</span>
+            </Link>
+            <h1 className="text-2xl ">
               <Link href="/">
-                Panama<span>BeerClub</span>
+                <div className="w-[7vw]">
+                  <Image
+                    src={logo}
+                    alt="Panama Beer Club "
+                    className="hidden md:block "
+                    layout="responsive"
+                  />
+                </div>
               </Link>
             </h1>
           </div>
         </div>
-        <div className="navbar-end hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">
-            <li>
+        <div className="hidden lg:flex ms-auto">
+          <ul className="menu menu-horizontal px-1 flex flex-row">
+            <li className="text-xl">
               <Link href="/">Home</Link>
             </li>
             {/*                        <li>
-                            <Link href="/sobre/nosotros">About</Link>
-                        </li>
-                        <li>
-                            <Link href="/planes">Princing</Link>
-                        </li> */}
-            <li className="item-navegacion-login">
+                          <Link href="/sobre/nosotros">About</Link>
+                      </li>
+                      <li>
+                          <Link href="/planes">Princing</Link>
+                      </li> */}
+            <li className=" text-xl ">
+              <Link href="/survey">Survey</Link>
+            </li>
+            <li className=" text-xl ">
+              <Link href="/user/pricing">Pricing</Link>
+            </li>
+            <li className=" text-xl text-primary">
               <Link href="/login">Login</Link>
             </li>
           </ul>

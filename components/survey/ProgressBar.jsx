@@ -2,9 +2,7 @@ export default function ProgressBar() {
   return (
     <ul className="timeline mx-auto h-[80px]">
       <li>
-        <div className="timeline-start timeline-box ">
-          First Macintosh compu
-        </div>
+        <div className="timeline-start timeline-box ">Style</div>
         <div className="timeline-middle">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -23,7 +21,7 @@ export default function ProgressBar() {
       </li>
       <li>
         <hr />
-        <div className="timeline-start timeline-box">iMac</div>
+        <div className="timeline-start timeline-box">Body</div>
         <div className="timeline-middle">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -42,7 +40,7 @@ export default function ProgressBar() {
       </li>
       <li>
         <hr />
-        <div className="timeline-start timeline-box">iPod</div>
+        <div className="timeline-start timeline-box">Aroma</div>
         <div className="timeline-middle">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -61,7 +59,7 @@ export default function ProgressBar() {
       </li>
       <li>
         <hr />
-        <div className="timeline-start timeline-box">iPhone</div>
+        <div className="timeline-start timeline-box">Ibu</div>
         <div className="timeline-middle">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -80,7 +78,7 @@ export default function ProgressBar() {
       </li>
       <li>
         <hr />
-        <div className="timeline-start timeline-box">Apple Watch</div>
+        <div className="timeline-start timeline-box">Final</div>
         <div className="timeline-middle">
           <svg
             xmlns="http://www.w3.org/2000/svg"

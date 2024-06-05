@@ -76,17 +76,17 @@ export default function UserNavbar() {
                             <Link href="/planes">Princing</Link>
                         </li> */}
             <li className=" text-xl ">
-              <Link href="/login">Catalog</Link>
+              <Link href="/user/catalog">Catalog</Link>
             </li>
             <li className=" text-xl ">
-              <Link href="/login">Pricing</Link>
+              <Link href="/user/pricing">Pricing</Link>
             </li>
           </ul>
         </div>
         <div className="ms-auto navbar-end hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
             <li className="text-xl">
-              <Link href="/">
+              <Link href="/user">
                 <Image src={CartIcon} width={40}></Image>
               </Link>
             </li>
@@ -97,7 +97,7 @@ export default function UserNavbar() {
                             <Link href="/planes">Princing</Link>
                         </li> */}
             <li className="item-navegacion-login text-xl text-primary">
-              <Link href="/login">
+              <Link href="/user/profile">
                 <Image src={ProfileIcon} width={40}></Image>
               </Link>
             </li>
