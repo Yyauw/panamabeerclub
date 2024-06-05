@@ -159,7 +159,7 @@ export default function Home() {
         </div>
         <div className="pricing-cards">
           <div className="pricing-card-blue">
-            <div>
+            <div className="flex h-[100%] flex-col">
               <h5>Basic</h5>
               <p>$14.99 Per Delivery</p>
               <ul>
@@ -172,11 +172,11 @@ export default function Home() {
                   <span>20+ varieties of Craft-Beer</span>
                 </li>
               </ul>
-              <button className="btn-pricing">Select</button>
+              <button className="btn-pricing mt-auto">Select</button>
             </div>
           </div>
           <div className="pricing-card-brown">
-            <div>
+            <div className="flex h-[100%] flex-col">
               <h5>Basic</h5>
               <p>$29.99 Per Delivery</p>
               <ul>
@@ -198,11 +198,11 @@ export default function Home() {
                 </li>
               </ul>
 
-              <button className="btn-pricing">Select</button>
+              <button className="btn-pricing mt-auto">Select</button>
             </div>
           </div>
           <div className="pricing-card-blue">
-            <div>
+            <div className="flex h-[100%] flex-col">
               <h5>Basic</h5>
               <p>$49.99 Per Delivery</p>
               <ul>
@@ -228,7 +228,7 @@ export default function Home() {
                 </li>
               </ul>
 
-              <button className="btn-pricing">Select</button>
+              <button className="btn-pricing mt-auto">Select</button>
             </div>
           </div>
         </div>
