@@ -12,7 +12,7 @@ export default function UserForm({
   const modalRef = useRef();
   const [modalContent, setModalContent] = useState("");
   const router = useRouter();
-  const [userInfo, setUserInfo] = useState(JSON.parse(data));
+  const [userInfo, setUserInfo] = useState(data ? JSON.parse(data) : {});
 
   // Set the form data with the user info
   const [formData, setFormData] = useState({
@@ -36,6 +36,8 @@ export default function UserForm({
       phoneNumber: userInfo.phoneNumber,
       birthDate: new Date(userInfo.birthDate).toISOString().replace(/T.*/, ""),
       userType: userInfo.userType,
+      password: userInfo.password,
+      uid: userInfo.uid,
     });
   }, []);
 
@@ -99,6 +101,23 @@ export default function UserForm({
             id="lastname"
             name="lastName"
             value={formData.lastName}
+            onChange={handleChange}
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-white leading-tight focus:outline-none focus:shadow-outline bg-gray-900 border-gray-700"
+          />
+        </div>
+
+        <div className="mb-4">
+          <label
+            className="block text-gray-300 text-sm font-bold mb-2"
+            htmlFor="password"
+          >
+            Contraseña
+          </label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            value={formData.password}
             onChange={handleChange}
             className="shadow appearance-none border rounded w-full py-2 px-3 text-white leading-tight focus:outline-none focus:shadow-outline bg-gray-900 border-gray-700"
           />
