@@ -57,7 +57,7 @@ export default function LoginPage() {
     <>
       <div
         style={{
-          position: "absolute",
+          position: "fixed",
           top: 0,
           left: 0,
           width: "100%",
@@ -66,10 +66,14 @@ export default function LoginPage() {
       >
         <Image src={bglogin} alt="Background" layout="fill" objectFit="cover" />
       </div>
-      <div className="section-auth relative z-10 h-[100vh]">
-        <div>
-          <Image src={logo} alt="Panama Beer Club" />
-        </div>
+      <div className="section-auth relative z-10 h-[100vh] ">
+        <Link href="/">
+          <Image
+            src={logo}
+            alt="Panama Beer Club"
+            className="hidden md:block"
+          />
+        </Link>
         <LoginForm
           validateUser={validateUser}
           redirect={redirectExistingUser}

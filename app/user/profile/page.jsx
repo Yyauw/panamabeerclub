@@ -3,14 +3,16 @@ import AddressCard from "@/components/user/AddressCard";
 export default function userProfile() {
   return (
     <>
-      <section className="profile-topsection bg-primary/80 ">
-        <div className="wrapper container mx-auto flex p-4">
+      <section className="profile-topsection bg-primary/80  ">
+        <div className="wrapper container mx-auto flex p-4 w-[89vw]">
           <div className="info-section w-[100%] text-black">
             <div className="border-b-2 border-black border-cbg flex content-center items-center py-3">
               <h1 className="text-3xl text-cbg font-extrabold">
                 HELLO, MANOLO500
               </h1>
-              <p className="ms-auto text-white">Edit Info</p>
+              <p className="ms-auto text-white hover:cursor-pointer hover:underline">
+                Edit Info
+              </p>
             </div>
             <p className="text-cbg my-3 ">
               <span className="font-bold">Email: </span> MANOLO500@gmail.com
@@ -36,15 +38,17 @@ export default function userProfile() {
         <div className="w-[60%] border-r-2 px-8">
           <div className="flex w-[100%]">
             <h1 className="font-bold text-3xl ">Addresses</h1>
-            <p className="ms-auto text-primary my-auto">+Add New</p>
+            <p className="ms-auto text-primary my-auto hover:underline hover:cursor-pointer">
+              +Add New
+            </p>
           </div>
-          <div className="overflow-auto p-3 max-h-56">
+          <div className="overflow-auto p-3 ">
             <AddressCard></AddressCard>
             <AddressCard></AddressCard>
             <AddressCard></AddressCard>
           </div>
         </div>
-        <div className="w-[40%] p-2">
+        <div className="w-[40%] p-2 px-10">
           <div className="border-2 rounded-md mt-2 bg-secondary border-hidden p-4">
             <h1 className="text-2xl font-bold text-center">Subscription</h1>
             <p className="text-cbg my-3 ">

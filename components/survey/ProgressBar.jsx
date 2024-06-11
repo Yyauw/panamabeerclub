@@ -17,10 +17,11 @@ export default function ProgressBar() {
             />
           </svg>
         </div>
-        <hr />
+        <hr className="bg-primary" />
       </li>
       <li>
-        <hr />
+        <hr className="bg-primary" />
+
         <div className="timeline-start timeline-box">Body</div>
         <div className="timeline-middle">
           <svg

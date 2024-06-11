@@ -4,7 +4,7 @@ import ItemCard from "@/components/user/catalog/ItemCard";
 export default function CatalogPage() {
   return (
     <>
-      <main className="container mx-auto p-4 ">
+      <main className="p-4  mx-[5vw]">
         <section className="headerSection grid grid-cols-5">
           <div className="col-span-4">
             <h1 className="text-2xl font-bold">
@@ -29,8 +29,8 @@ export default function CatalogPage() {
             </div>
           </div>
         </section>
-        <section className="mainSection grid grid-cols-5 mt-1 gap-2">
-          <aside className="col-span-1 border-2 border-primary rounded-md bg-primary p-1 h-[60vh] overflow-auto">
+        <section className="mainSection grid grid-cols-5 mt-4 gap-2">
+          <aside className="col-span-1 border-2 border-primary rounded-md bg-primary p-1 ">
             <label className="input input-bordered flex items-center gap-2">
               <input type="text" className="grow" placeholder="Search" />
               <svg
@@ -49,7 +49,7 @@ export default function CatalogPage() {
             <p className="text-black font-bold mt-2">Filter by:</p>
             <CatalogFilter></CatalogFilter>
           </aside>
-          <section className="col-span-4  p-1 h-[60vh] overflow-auto grid grid-cols-3 gap-2">
+          <section className="col-span-4   overflow-auto grid grid-cols-3 gap-2">
             <ItemCard></ItemCard>
             <ItemCard></ItemCard>
             <ItemCard></ItemCard>

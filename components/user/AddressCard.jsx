@@ -7,7 +7,7 @@ export default function AddressCard() {
     <div className="border-2 rounded-md p-3 bg-white text-black my-2">
       <div className="grid grid-cols-3 ">
         <div className=""></div>
-        <h1 className="text-center font-bold text-xl">CASITA A1</h1>
+        <h1 className="text-center font-bold text-xl">CASITA CHIRIQUI</h1>
         <div className="flex flex-row justify-end">
           <Image
             src={editIcon}
@@ -23,7 +23,7 @@ export default function AddressCard() {
       </div>
       <div className="btn-wrapper w-[100%] grid grid-cols-5">
         <p className="col-span-4 break-words mt-1">
-          descripcionasdddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
+          Casa de color verde, al lado de la escuela.
         </p>
         <button className="btn btn-xs ms-auto mt-auto btn-outline text-black">
           view Map

@@ -71,7 +71,7 @@ export default function signupPage() {
     <>
       <div
         style={{
-          position: "absolute",
+          position: "fixed",
           top: 0,
           left: 0,
           width: "100%",
@@ -85,13 +85,13 @@ export default function signupPage() {
           createUser={createUser}
           redirect={redirectExistingUser}
         ></SignupForm>
-        <div>
+        <Link href="/">
           <Image
             src={logo}
             alt="Panama Beer Club "
             className="hidden md:block"
           />
-        </div>
+        </Link>
       </div>
     </>
   );

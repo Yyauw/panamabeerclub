@@ -1,16 +1,86 @@
+"use client";
 import Image from "next/image";
 import bgImage from "@/public/images/surveybg.jpg";
 import surveyImage from "@/public/images/serveyimg.jpg";
 import Link from "next/link";
 import ProgressBar from "@/components/survey/ProgressBar";
+import SurveyOption from "@/components/survey/SurveyOption";
+import { useState } from "react";
 
 export default function surveyPage() {
+  const [preferences, setPreferences] = useState({});
+  const [currentQuestion, setCurrentQuestion] = useState(0);
+  const surveyQuestions = [
+    {
+      question: "Cual es tu estilo de cerveza preferido?",
+      options: [
+        { option: "Lager", value: "lager" },
+        { option: "Pale", value: "pale" },
+        { option: "Pilsner", value: "pilsner" },
+        { option: "No se / otros", value: "" },
+      ],
+      img: surveyImage,
+      name: "style",
+    },
+    {
+      question: "Cual es tasdasdsadasdasdza preferido?",
+      options: [
+        { option: "La6969669ger", value: "lager" },
+        { option: "Pale", value: "pale" },
+        { option: "Pilsner", value: "pilsner" },
+        { option: "No se / otros", value: "" },
+      ],
+      img: surveyImage,
+      name: "sdddd",
+    },
+    {
+      question: "Cual es tu estilo de cerveza preferido?",
+      options: [
+        { option: "Lager", value: "lager" },
+        { option: "Pale", value: "pale" },
+        { option: "Pilsner", value: "pilsner" },
+        { option: "No se / otros", value: "" },
+      ],
+      img: surveyImage,
+      name: "xdddddddddd",
+    },
+  ];
+
+  const onClickHandler = (action) => {
+    if (action === "sum") {
+      if (currentQuestion >= surveyQuestions.length - 1) return;
+      setCurrentQuestion((prev) => prev + 1);
+    }
+    if (action === "sub") {
+      if (currentQuestion === 0) return;
+      setCurrentQuestion((prev) => prev - 1);
+    }
+  };
+
+  const onChangeHandler = (e) => {
+    const value = e.target.value;
+    const fieldName = surveyQuestions[currentQuestion].name;
+    console.log(fieldName + " : " + value);
+    console.log(preferences);
+    setPreferences((prv) => {
+      return { ...prv, [fieldName]: value };
+    });
+  };
+
   return (
     <>
-      <section className="h-screen  flex items-center bg-secondary/20">
+      <Image
+        src={bgImage}
+        alt="Background"
+        layout="responsive"
+        objectFit="cover"
+        className="absolute top-0 left-0 z-0 h-screen w-screen bg-cover opacity-50"
+      />
+
+      <section className="h-screen  flex items-center relative z-20">
         <div className="border-0  rounded-2xl w-[80vw] p-8 mx-auto">
           <Link href="/" className="absolute top-0 left-0 z-10 m-6 font-bold">
-            Go Back
+            ← Go Back
           </Link>
           <div className="progress-wrapper flex">
             <ProgressBar></ProgressBar>
@@ -18,51 +88,18 @@ export default function surveyPage() {
 
           <h1 className="text-4xl text-center font-bold">Survey</h1>
           <p className="text-2xl text-center">
-            Whats your favorite type of beer?
+            {surveyQuestions[currentQuestion].question}
           </p>
 
           <div className="grid grid-cols-2 gap-4 p-6">
-            <div className="auto-rows gap-1 grid" id="radioGroup">
-              <div className="form-control bg-black p-3 w-100 my-auto rounded-md">
-                <label className="label cursor-pointer">
-                  <span className="label-text text-xl">Lager</span>
-                  <input
-                    type="radio"
-                    name="radio-10"
-                    className="radio checked:bg-primary"
-                  />
-                </label>
-              </div>
-              <div className="form-control bg-black p-3 w-100 my-auto rounded-md">
-                <label className="label cursor-pointer">
-                  <span className="label-text text-xl">Stout</span>
-                  <input
-                    type="radio"
-                    name="radio-10"
-                    className="radio checked:bg-primary"
-                  />
-                </label>
-              </div>
-              <div className="form-control bg-black p-3 w-100 my-auto rounded-md">
-                <label className="label cursor-pointer">
-                  <span className="label-text text-xl">Pale</span>
-                  <input
-                    type="radio"
-                    name="radio-10"
-                    className="radio checked:bg-primary"
-                  />
-                </label>
-              </div>
-              <div className="form-control bg-black p-3 w-100 my-auto rounded-md">
-                <label className="label cursor-pointer">
-                  <span className="label-text text-xl">Dont know</span>
-                  <input
-                    type="radio"
-                    name="radio-10"
-                    className="radio checked:bg-primary"
-                  />
-                </label>
-              </div>
+            <div
+              className="auto-rows gap-1 grid"
+              id="radioGroup"
+              onChange={onChangeHandler}
+            >
+              {surveyQuestions[currentQuestion].options.map((i) => {
+                return <SurveyOption value={i.value}>{i.option}</SurveyOption>;
+              })}
             </div>
             <Image
               src={surveyImage}
@@ -71,8 +108,18 @@ export default function surveyPage() {
             ></Image>
           </div>
           <div className="button-group grid grid-cols-2 gap-4 mx-auto mt-6">
-            <button className="btn btn-wide btn-secondary mx-auto">BACK</button>
-            <button className="btn btn-wide btn-primary mx-auto">NEXT</button>
+            <button
+              className="btn btn-wide btn-secondary mx-auto"
+              onClick={() => onClickHandler("sub")}
+            >
+              BACK
+            </button>
+            <button
+              className="btn btn-wide btn-primary mx-auto"
+              onClick={() => onClickHandler("sum")}
+            >
+              NEXT
+            </button>
           </div>
         </div>
       </section>

@@ -1,5 +1,6 @@
 import checkpricing from "@/public/images/checkpricing.svg";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function pricingPage() {
   return (
@@ -20,7 +21,12 @@ export default function pricingPage() {
                   <span>20+ varieties of Craft-Beer</span>
                 </li>
               </ul>
-              <button className="btn-pricing mt-auto">Select</button>
+              <Link
+                href="https://buy.stripe.com/test_eVa8yKbftepa19K3cc"
+                className="btn-pricing mt-auto"
+              >
+                Select
+              </Link>
             </div>
           </div>
           <div className="pricing-card-brown">

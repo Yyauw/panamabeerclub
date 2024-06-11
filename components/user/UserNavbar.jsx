@@ -1,10 +1,11 @@
+"use client";
 import Link from "next/link";
 import logo from "@/public/images/logo.svg";
 import Image from "next/image";
 import CartIcon from "@/public/icon/Cart.svg";
 import ProfileIcon from "@/public/icon/profile.svg";
 
-export default function UserNavbar() {
+export default function UserNavbar({ openModal }) {
   return (
     <nav className=" text-white relative z-10">
       <div className="navbar bg-transparent grid grid-cols-3">
@@ -86,9 +87,9 @@ export default function UserNavbar() {
         <div className="ms-auto navbar-end hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
             <li className="text-xl">
-              <Link href="/user">
+              <div onClick={openModal}>
                 <Image src={CartIcon} width={40}></Image>
-              </Link>
+              </div>
             </li>
             {/*                        <li>
                             <Link href="/sobre/nosotros">About</Link>
