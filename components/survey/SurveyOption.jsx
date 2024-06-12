@@ -1,4 +1,4 @@
-export default function SurveyOption({ value = undefined, children }) {
+export default function SurveyOption({ value = undefined, checked, children }) {
   return (
     <div className="form-control bg-black p-3 w-100 my-auto rounded-md">
       <label className="label cursor-pointer">
@@ -8,6 +8,7 @@ export default function SurveyOption({ value = undefined, children }) {
           name="radio-10"
           className="radio checked:bg-primary"
           value={value}
+          checked={checked}
         />
       </label>
     </div>

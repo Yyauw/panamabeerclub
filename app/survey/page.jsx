@@ -1,59 +1,28 @@
 "use client";
 import Image from "next/image";
 import bgImage from "@/public/images/surveybg.jpg";
-import surveyImage from "@/public/images/serveyimg.jpg";
+
 import Link from "next/link";
 import ProgressBar from "@/components/survey/ProgressBar";
 import SurveyOption from "@/components/survey/SurveyOption";
 import { useState } from "react";
+import { surveyQuestions } from "@/lib/surveyQuestions";
 
 export default function surveyPage() {
   const [preferences, setPreferences] = useState({});
   const [currentQuestion, setCurrentQuestion] = useState(0);
-  const surveyQuestions = [
-    {
-      question: "Cual es tu estilo de cerveza preferido?",
-      options: [
-        { option: "Lager", value: "lager" },
-        { option: "Pale", value: "pale" },
-        { option: "Pilsner", value: "pilsner" },
-        { option: "No se / otros", value: "" },
-      ],
-      img: surveyImage,
-      name: "style",
-    },
-    {
-      question: "Cual es tasdasdsadasdasdza preferido?",
-      options: [
-        { option: "La6969669ger", value: "lager" },
-        { option: "Pale", value: "pale" },
-        { option: "Pilsner", value: "pilsner" },
-        { option: "No se / otros", value: "" },
-      ],
-      img: surveyImage,
-      name: "sdddd",
-    },
-    {
-      question: "Cual es tu estilo de cerveza preferido?",
-      options: [
-        { option: "Lager", value: "lager" },
-        { option: "Pale", value: "pale" },
-        { option: "Pilsner", value: "pilsner" },
-        { option: "No se / otros", value: "" },
-      ],
-      img: surveyImage,
-      name: "xdddddddddd",
-    },
-  ];
+  const [selectedOption, setSelectedOption] = useState(null);
 
   const onClickHandler = (action) => {
     if (action === "sum") {
       if (currentQuestion >= surveyQuestions.length - 1) return;
       setCurrentQuestion((prev) => prev + 1);
+      setSelectedOption(null);
     }
     if (action === "sub") {
       if (currentQuestion === 0) return;
       setCurrentQuestion((prev) => prev - 1);
+      setSelectedOption(null);
     }
   };
 
@@ -65,6 +34,7 @@ export default function surveyPage() {
     setPreferences((prv) => {
       return { ...prv, [fieldName]: value };
     });
+    setSelectedOption(value);
   };
 
   return (
@@ -83,7 +53,7 @@ export default function surveyPage() {
             ← Go Back
           </Link>
           <div className="progress-wrapper flex">
-            <ProgressBar></ProgressBar>
+            <ProgressBar progress={currentQuestion}></ProgressBar>
           </div>
 
           <h1 className="text-4xl text-center font-bold">Survey</h1>
@@ -98,11 +68,18 @@ export default function surveyPage() {
               onChange={onChangeHandler}
             >
               {surveyQuestions[currentQuestion].options.map((i) => {
-                return <SurveyOption value={i.value}>{i.option}</SurveyOption>;
+                return (
+                  <SurveyOption
+                    value={i.value}
+                    checked={selectedOption === i.value}
+                  >
+                    {i.option}
+                  </SurveyOption>
+                );
               })}
             </div>
             <Image
-              src={surveyImage}
+              src={surveyQuestions[currentQuestion].img}
               layout="responsive"
               className="rounded-xl"
             ></Image>

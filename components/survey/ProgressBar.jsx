@@ -1,14 +1,22 @@
-export default function ProgressBar() {
+export default function ProgressBar({ progress }) {
   return (
     <ul className="timeline mx-auto h-[80px]">
       <li>
-        <div className="timeline-start timeline-box ">Style</div>
+        <div
+          className={
+            progress === 0
+              ? "timeline-start timeline-box border-primary"
+              : "timeline-start timeline-box"
+          }
+        >
+          Style
+        </div>
         <div className="timeline-middle">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 20 20"
             fill="currentColor"
-            className="w-5 h-5"
+            className={progress > 0 ? "w-5 h-5 text-primary" : "w-5 h-5"}
           >
             <path
               fillRule="evenodd"
@@ -17,18 +25,26 @@ export default function ProgressBar() {
             />
           </svg>
         </div>
-        <hr className="bg-primary" />
+        {progress > 0 ? <hr className="bg-primary" /> : <hr />}
       </li>
       <li>
-        <hr className="bg-primary" />
+        {progress > 0 ? <hr className="bg-primary" /> : <hr />}
 
-        <div className="timeline-start timeline-box">Body</div>
+        <div
+          className={
+            progress === 1
+              ? "timeline-start timeline-box border-primary"
+              : "timeline-start timeline-box"
+          }
+        >
+          Body
+        </div>
         <div className="timeline-middle">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 20 20"
             fill="currentColor"
-            className="w-5 h-5"
+            className={progress > 1 ? "w-5 h-5 text-primary" : "w-5 h-5"}
           >
             <path
               fillRule="evenodd"
@@ -37,17 +53,25 @@ export default function ProgressBar() {
             />
           </svg>
         </div>
-        <hr />
+        {progress > 1 ? <hr className="bg-primary" /> : <hr />}
       </li>
       <li>
-        <hr />
-        <div className="timeline-start timeline-box">Aroma</div>
+        {progress > 1 ? <hr className="bg-primary" /> : <hr />}
+        <div
+          className={
+            progress === 2
+              ? "timeline-start timeline-box border-primary"
+              : "timeline-start timeline-box"
+          }
+        >
+          Aroma
+        </div>
         <div className="timeline-middle">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 20 20"
             fill="currentColor"
-            className="w-5 h-5"
+            className={progress > 2 ? "w-5 h-5 text-primary" : "w-5 h-5"}
           >
             <path
               fillRule="evenodd"
@@ -56,17 +80,25 @@ export default function ProgressBar() {
             />
           </svg>
         </div>
-        <hr />
+        {progress > 2 ? <hr className="bg-primary" /> : <hr />}
       </li>
       <li>
-        <hr />
-        <div className="timeline-start timeline-box">Ibu</div>
+        {progress > 2 ? <hr className="bg-primary" /> : <hr />}
+        <div
+          className={
+            progress === 3
+              ? "timeline-start timeline-box border-primary"
+              : "timeline-start timeline-box"
+          }
+        >
+          Ibu
+        </div>
         <div className="timeline-middle">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 20 20"
             fill="currentColor"
-            className="w-5 h-5"
+            className={progress > 3 ? "w-5 h-5 text-primary" : "w-5 h-5"}
           >
             <path
               fillRule="evenodd"
@@ -75,17 +107,25 @@ export default function ProgressBar() {
             />
           </svg>
         </div>
-        <hr />
+        {progress > 3 ? <hr className="bg-primary" /> : <hr />}
       </li>
       <li>
-        <hr />
-        <div className="timeline-start timeline-box">Final</div>
+        {progress > 3 ? <hr className="bg-primary" /> : <hr />}
+        <div
+          className={
+            progress === 4
+              ? "timeline-start timeline-box border-primary"
+              : "timeline-start timeline-box"
+          }
+        >
+          Final
+        </div>
         <div className="timeline-middle">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 20 20"
             fill="currentColor"
-            className="w-5 h-5"
+            className={progress > 4 ? "w-5 h-5 text-primary" : "w-5 h-5"}
           >
             <path
               fillRule="evenodd"
