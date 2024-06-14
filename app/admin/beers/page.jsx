@@ -1,40 +1,37 @@
 import Table from "@/components/admin/Table";
 import Link from "next/link";
+import connectDB from "@/lib/connectDB";
+import Beer from "@/models/Beer";
+import { borrarFoto } from "@/lib/fileUploadHelper";
 
-export default function usersAdminPage() {
-  const fields = ["name", "style", "ibu", "alc", "aroma", "body", "quantity"];
-  const dummyData = [
-    {
-      _id: "cervecita 1",
-      name: "Fula",
-      style: "pale",
-      ibu: 74,
-      alc: 8.3,
-      aroma: "citrus",
-      body: "complete",
-      quantity: 69,
-    },
-    {
-      _id: "cervecita 2",
-      name: "Fula2",
-      style: "pale",
-      ibu: 74,
-      alc: 8.3,
-      aroma: "citrus",
-      body: "complete",
-      quantity: 0,
-    },
-    {
-      _id: "cervecita 3",
-      name: "Fula69",
-      style: "pale",
-      ibu: 74,
-      alc: 9,
-      aroma: "citrus",
-      body: "complete",
-      quantity: 32,
-    },
+export default async function beersAdminPage() {
+  const fetchBeers = async () => {
+    await connectDB();
+    const beerList = await Beer.find({});
+    return beerList;
+  };
+
+  const beerList = await fetchBeers();
+
+  const fields = [
+    "name",
+    "company",
+    "style",
+    "ibu",
+    "alc",
+    "aroma",
+    "body",
+    "quantity",
   ];
+
+  const deleteBeer = async (id) => {
+    "use server";
+    connectDB();
+    const beer = await Beer.findById(id);
+    await borrarFoto(beer.image);
+    await Beer.findByIdAndDelete(id);
+  };
+
   return (
     <>
       <main className="p-2">
@@ -46,7 +43,12 @@ export default function usersAdminPage() {
         >
           Add New Beer
         </Link>
-        <Table tableHeadFields={fields} tableRowItems={dummyData}></Table>
+        <Table
+          tableHeadFields={fields}
+          tableRowItems={beerList}
+          type="beers"
+          deleteItem={deleteBeer}
+        ></Table>
       </main>
     </>
   );

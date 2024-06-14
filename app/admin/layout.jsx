@@ -30,12 +30,12 @@ export default function adminHeader({ children }) {
             </SidebarItem>
           </li>
           <li>
-            <SidebarItem href="/admin/users" icon={souvenirIcon}>
+            <SidebarItem href="/admin/souvenirs" icon={souvenirIcon}>
               Souvenirs
             </SidebarItem>
           </li>
           <li className="mt-auto text-red-400 font-bold">
-            <SidebarItem href="/admin/users" icon={logoutIcon}>
+            <SidebarItem href="/logout" icon={logoutIcon}>
               Log Out
             </SidebarItem>
           </li>

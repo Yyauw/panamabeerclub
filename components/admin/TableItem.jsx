@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 
-export default function TableItem({ data, keys, index, type, deleteUser }) {
+export default function TableItem({ data, keys, index, type, deleteItem }) {
   return (
     <>
       <tr>
@@ -18,7 +18,7 @@ export default function TableItem({ data, keys, index, type, deleteUser }) {
             Edit
           </Link>
           <button
-            onClick={() => deleteUser(data._id)}
+            onClick={() => deleteItem(data._id)}
             className="btn btn-error text-white btn-xs ms-1"
           >
             Delete

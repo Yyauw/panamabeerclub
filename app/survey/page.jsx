@@ -7,13 +7,21 @@ import ProgressBar from "@/components/survey/ProgressBar";
 import SurveyOption from "@/components/survey/SurveyOption";
 import { useState } from "react";
 import { surveyQuestions } from "@/lib/surveyQuestions";
+import { useRouter } from "next/navigation";
 
 export default function surveyPage() {
+  const router = useRouter();
   const [preferences, setPreferences] = useState({});
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [selectedOption, setSelectedOption] = useState(null);
 
   const onClickHandler = (action) => {
+    console.log(currentQuestion);
+    if (surveyQuestions.length === currentQuestion + 1) {
+      localStorage.setItem("preferences", JSON.stringify(preferences));
+      router.push("user/catalog");
+    }
+
     if (action === "sum") {
       if (currentQuestion >= surveyQuestions.length - 1) return;
       setCurrentQuestion((prev) => prev + 1);

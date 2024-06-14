@@ -50,7 +50,7 @@ export default async function usersAdminPage() {
           tableHeadFields={fields}
           tableRowItems={formatedList}
           type="users"
-          deleteUser={deleteUser}
+          deleteItem={deleteUser}
         ></Table>
       </main>
     </>

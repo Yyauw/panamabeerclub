@@ -9,7 +9,12 @@ const Beer = mongoose.Schema(
     aroma: String,
     body: String,
     quantity: Number,
-    company: { type: Schema.Types.ObjectId, ref: "Company" },
+    company: {
+      type: String,
+      enum: ["casa bruja", "rana dorada", "clandestina"],
+    },
+    image: String,
+    description: String,
   },
   {
     timestamps: true,

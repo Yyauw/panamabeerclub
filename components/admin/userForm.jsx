@@ -80,6 +80,7 @@ export default function UserForm({
             Nombre
           </label>
           <input
+            required
             type="text"
             id="name"
             name="name"
@@ -106,22 +107,24 @@ export default function UserForm({
           />
         </div>
 
-        <div className="mb-4">
-          <label
-            className="block text-gray-300 text-sm font-bold mb-2"
-            htmlFor="password"
-          >
-            Contraseña
-          </label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-white leading-tight focus:outline-none focus:shadow-outline bg-gray-900 border-gray-700"
-          />
-        </div>
+        {editUser === undefined && (
+          <div className="mb-4">
+            <label
+              className="block text-gray-300 text-sm font-bold mb-2"
+              htmlFor="password"
+            >
+              Contraseña
+            </label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-white leading-tight focus:outline-none focus:shadow-outline bg-gray-900 border-gray-700"
+            />
+          </div>
+        )}
 
         <div className="mb-4">
           <label
