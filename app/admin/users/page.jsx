@@ -2,6 +2,7 @@ import Table from "@/components/admin/Table";
 import Link from "next/link";
 import User from "@/models/User";
 import connectDB from "@/lib/connectDB";
+import { revalidatePath } from "next/cache";
 
 export default async function usersAdminPage() {
   const fetchUsers = async () => {
@@ -33,6 +34,7 @@ export default async function usersAdminPage() {
     "use server";
     connectDB();
     const user = await User.findByIdAndDelete(id);
+    revalidatePath("/admin/users");
   };
 
   return (

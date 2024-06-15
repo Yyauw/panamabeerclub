@@ -3,6 +3,7 @@ import User from "@/models/User";
 import connectDB from "@/lib/connectDB";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "@/lib/firebaseConfig";
+import { revalidatePath } from "next/cache";
 
 export default function newUserFormPage() {
   const createUser = async (data) => {
@@ -18,6 +19,7 @@ export default function newUserFormPage() {
         const user = userCredential.user;
         const newUser = new User({ ...data, uid: user.uid });
         await newUser.save();
+        revalidatePath("/admin/users");
       })
       .catch((error) => {
         const errorCode = error.code;

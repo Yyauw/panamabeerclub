@@ -2,6 +2,7 @@ import BeerForm from "@/components/admin/beer/BeerForm";
 import Beer from "@/models/Beer";
 import connectDB from "@/lib/connectDB";
 import { subirFoto } from "@/lib/fileUploadHelper";
+import { revalidatePath } from "next/cache";
 
 export default async function editBeerPage({ params }) {
   connectDB();
@@ -31,6 +32,7 @@ export default async function editBeerPage({ params }) {
     //console.log({ ...beer, image: beerInfo.image });
     connectDB();
     const editedBeer = await Beer.findByIdAndUpdate(id, beer);
+    revalidatePath("/admin/beers");
   }
 
   return (

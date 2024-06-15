@@ -60,7 +60,11 @@ export default function UserForm({
     if (createUser) createUser(formData);
     setModalContent(msg);
     modalRef.current.showModal();
-    setTimeout(() => router.push("/admin/users"), 3000);
+
+    setTimeout(() => {
+      router.push("/admin/users?new=1");
+      router.refresh();
+    }, 3000);
   };
 
   return (

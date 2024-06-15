@@ -5,7 +5,7 @@ import Link from "next/link";
 export default function pricingPage() {
   return (
     <>
-      <section className="section-pricing " style={{ paddingTop: 0 }}>
+      <section className="section-pricing mb-6" style={{ paddingTop: 0 }}>
         <div className="pricing-cards">
           <div className="pricing-card-blue">
             <div className="flex h-[100%] flex-col">

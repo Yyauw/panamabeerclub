@@ -2,6 +2,7 @@ import BeerForm from "@/components/admin/beer/BeerForm";
 import { subirFoto } from "@/lib/fileUploadHelper";
 import Beer from "@/models/Beer";
 import connectDB from "@/lib/connectDB";
+import { revalidatePath } from "next/cache";
 
 export default function newUserFormPage() {
   async function actionHandler(formData) {
@@ -24,6 +25,7 @@ export default function newUserFormPage() {
     beer.image = url;
     const newBeer = new Beer(beer);
     await newBeer.save();
+    revalidatePath("/admin/beers");
   }
 
   return (

@@ -3,6 +3,7 @@ import Link from "next/link";
 import connectDB from "@/lib/connectDB";
 import Beer from "@/models/Beer";
 import { borrarFoto } from "@/lib/fileUploadHelper";
+import { revalidatePath } from "next/cache";
 
 export default async function beersAdminPage() {
   const fetchBeers = async () => {
@@ -30,6 +31,7 @@ export default async function beersAdminPage() {
     const beer = await Beer.findById(id);
     await borrarFoto(beer.image);
     await Beer.findByIdAndDelete(id);
+    revalidatePath("/admin/beers");
   };
 
   return (

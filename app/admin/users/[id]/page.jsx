@@ -1,6 +1,7 @@
 import UserForm from "@/components/admin/userForm";
 import User from "@/models/User";
 import connectDB from "@/lib/connectDB";
+import { revalidatePath } from "next/cache";
 
 export default async function editUserPage({ params }) {
   connectDB();
@@ -10,6 +11,7 @@ export default async function editUserPage({ params }) {
     "use server";
     connectDB();
     const user = await User.findByIdAndUpdate(id, editedUser);
+    revalidatePath("/admin/users");
   };
 
   return (

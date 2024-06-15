@@ -15,7 +15,7 @@ export const metadata = {
 
 export default function adminHeader({ children }) {
   return (
-    <main className="flex flex-row h-screen w-screen">
+    <main className="flex flex-row h-screen">
       <aside className="h-screen flex-1">
         <ul className="menu bg-base-200 h-screen">
           <h1 className="text-2xl text-center font-bold mb-4">ADMIN PANEL</h1>

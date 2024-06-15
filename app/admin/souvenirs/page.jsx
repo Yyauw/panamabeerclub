@@ -2,6 +2,7 @@ import Table from "@/components/admin/Table";
 import Link from "next/link";
 import Souvenir from "@/models/Souvenir";
 import connectDB from "@/lib/connectDB";
+import { revalidatePath } from "next/cache";
 
 export default async function Page() {
   const fields = ["name", "description", "quantity"];
@@ -14,6 +15,7 @@ export default async function Page() {
     "use server";
     await connectDB();
     const souvenir = await Souvenir.findByIdAndDelete(id);
+    revalidatePath("/admin/souvenirs");
   };
 
   const souvenirList = await fetchSouvenirs();

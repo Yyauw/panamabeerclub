@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="section-footer relative z-10 mt-5">
+    <footer className="section-footer relative z-10">
       <div>
         <h2>
           Panama

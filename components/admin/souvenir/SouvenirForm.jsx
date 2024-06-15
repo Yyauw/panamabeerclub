@@ -42,14 +42,14 @@ export default function SouvenirForm({
       setModalContent("Producto actualizado correctamente");
       modalRef.current.showModal();
       editSouvenir(data._id, { ...data, ...formData });
-      setTimeout(() => router.push("/admin/souvenirs"), 3000);
+      setTimeout(() => router.push("/admin/souvenirs?new=1"), 3000);
       return;
     }
 
     setModalContent("Producto añadido correctamente");
     modalRef.current.showModal();
     createSouvenir(formData);
-    setTimeout(() => router.push("/admin/souvenirs"), 3000);
+    setTimeout(() => router.push("/admin/souvenirs?new=1"), 3000);
     // Aquí puedes manejar el envío del formulario
   };
 
