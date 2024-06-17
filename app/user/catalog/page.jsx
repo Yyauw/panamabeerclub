@@ -1,7 +1,14 @@
 import CatalogFilter from "@/components/user/catalog/CatalogFilter";
-import ItemCard from "@/components/user/catalog/ItemCard";
+import Catalog from "@/components/user/catalog/Catalog";
+import Beer from "@/models/Beer";
 
 export default function CatalogPage() {
+  const fetchBeers = async () => {
+    "use server";
+    const beers = await Beer.find({});
+    return JSON.stringify(beers);
+  };
+
   return (
     <>
       <main className="p-4  mx-[5vw]">
@@ -49,16 +56,7 @@ export default function CatalogPage() {
             <p className="text-black font-bold mt-2">Filter by:</p>
             <CatalogFilter></CatalogFilter>
           </aside>
-          <section className="col-span-4   overflow-auto grid grid-cols-3 gap-2">
-            <ItemCard></ItemCard>
-            <ItemCard></ItemCard>
-            <ItemCard></ItemCard>
-            <ItemCard></ItemCard>
-            <ItemCard></ItemCard>
-            <ItemCard></ItemCard>
-            <ItemCard></ItemCard>
-            <ItemCard></ItemCard>
-          </section>
+          <Catalog fetchBeers={fetchBeers}></Catalog>
         </section>
       </main>
     </>

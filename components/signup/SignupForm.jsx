@@ -24,8 +24,7 @@ export default function SignupForm({ createUser, redirect }) {
   useEffect(() => {
     const session = localStorage.getItem("userData");
     if (session) {
-      console.log(atob(session));
-      redirect(atob(session));
+      redirect(session);
     }
   }, []);
 
@@ -47,9 +46,9 @@ export default function SignupForm({ createUser, redirect }) {
         setModalContent("Cuenta creada con exito");
         modalRef.current.showModal();
         //encriptamos la data
-        const dataEncrypted = btoa(createUserResponse);
+        const user_id = JSON.parse(createUserResponse)._id;
         //console.log(dataEncrypted);
-        localStorage.setItem("userData", dataEncrypted);
+        localStorage.setItem("userData", user_id);
         //console.log(atob(dataEncrypted));
         setTimeout(() => router.push("/user"), 3000);
         return;

@@ -1,53 +1,51 @@
-import AddressCard from "@/components/user/AddressCard";
+import TopSection from "@/components/user/profile/TopSection";
+import AddressSection from "@/components/user/profile/AddressSection";
+import Address from "@/models/Address";
+import User from "@/models/User";
+import connectDB from "@/lib/connectDB";
 
 export default function userProfile() {
+  const addNewAddress = async (id, address) => {
+    "use server";
+    await connectDB();
+    const addressdb = new Address({
+      address: address.address,
+      description: address.description,
+      lng: address.lng,
+      lat: address.lat,
+    });
+    await addressdb.save();
+    const user = await User.findById(id);
+    user.address.push(addressdb._id);
+    await user.save();
+  };
+
+  const deleteAddress = async (id, addressId) => {
+    "use server";
+    await connectDB();
+    const user = await User.findById(id);
+    user.address.pull(addressId);
+    await user.save();
+    await Address.findByIdAndDelete(addressId);
+  };
+
+  const fetchUserData = async (id) => {
+    "use server";
+    await connectDB();
+    const user = await User.findById(id).populate("address");
+    return JSON.stringify(user);
+  };
+
   return (
     <>
-      <section className="profile-topsection bg-primary/80  ">
-        <div className="wrapper container mx-auto flex p-4 w-[89vw]">
-          <div className="info-section w-[100%] text-black">
-            <div className="border-b-2 border-black border-cbg flex content-center items-center py-3">
-              <h1 className="text-3xl text-cbg font-extrabold">
-                HELLO, MANOLO500
-              </h1>
-              <p className="ms-auto text-white hover:cursor-pointer hover:underline">
-                Edit Info
-              </p>
-            </div>
-            <p className="text-cbg my-3 ">
-              <span className="font-bold">Email: </span> MANOLO500@gmail.com
-            </p>
-            <p className="text-cbg my-3">
-              <span className="font-bold">Phone number: </span>{" "}
-              MANOLO500@gmail.com
-            </p>
-            <p className="text-cbg my-3">
-              <span className="font-bold">Email: </span> MANOLO500@gmail.com
-            </p>
-          </div>
-          <div className="img-section ms-auto pt-6">
-            <div className="avatar">
-              <div className="w-40 rounded-full">
-                <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section className="flex container mx-auto mt-3 p-4">
-        <div className="w-[60%] border-r-2 px-8">
-          <div className="flex w-[100%]">
-            <h1 className="font-bold text-3xl ">Addresses</h1>
-            <p className="ms-auto text-primary my-auto hover:underline hover:cursor-pointer">
-              +Add New
-            </p>
-          </div>
-          <div className="overflow-auto p-3 ">
-            <AddressCard></AddressCard>
-            <AddressCard></AddressCard>
-            <AddressCard></AddressCard>
-          </div>
-        </div>
+      <TopSection fetchUserData={fetchUserData}></TopSection>
+
+      <section className="flex container mx-auto mt-3 p-4 min-h-[50vh]">
+        <AddressSection
+          addNewAddress={addNewAddress}
+          fetchUserData={fetchUserData}
+          deleteAddress={deleteAddress}
+        ></AddressSection>
         <div className="w-[40%] p-2 px-10">
           <div className="border-2 rounded-md mt-2 bg-secondary border-hidden p-4">
             <h1 className="text-2xl font-bold text-center">Subscription</h1>

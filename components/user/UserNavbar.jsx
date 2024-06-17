@@ -5,7 +5,7 @@ import Image from "next/image";
 import CartIcon from "@/public/icon/Cart.svg";
 import ProfileIcon from "@/public/icon/profile.svg";
 
-export default function UserNavbar({ openModal }) {
+export default function UserNavbar({ openModal, isUserLogged }) {
   return (
     <nav className=" text-white relative z-10">
       <div className="navbar bg-transparent grid grid-cols-3">
@@ -98,9 +98,32 @@ export default function UserNavbar({ openModal }) {
                             <Link href="/planes">Princing</Link>
                         </li> */}
             <li className="item-navegacion-login text-xl text-primary">
-              <Link href="/user/profile">
-                <Image src={ProfileIcon} width={40}></Image>
-              </Link>
+              {isUserLogged ? (
+                <div className="dropdown dropdown-bottom dropdown-end">
+                  <div tabIndex={0} role="button">
+                    <Image src={ProfileIcon} width={40}></Image>
+                  </div>
+                  <ul
+                    tabIndex={0}
+                    className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box relative"
+                  >
+                    <li>
+                      <Link href="/user/profile" className="text-xl">
+                        Perfil
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="/user/profile" className="text-xl">
+                        Historial
+                      </Link>
+                    </li>
+                  </ul>
+                </div>
+              ) : (
+                <Link href="/login" className="txt-primary my-auto font-bold">
+                  Login
+                </Link>
+              )}
             </li>
           </ul>
         </div>

@@ -19,8 +19,7 @@ export default function LoginForm({ validateUser, redirect }) {
   useEffect(() => {
     const session = localStorage.getItem("userData");
     if (session) {
-      console.log(atob(session));
-      redirect(atob(session));
+      redirect(session);
     }
   }, []);
 
@@ -36,11 +35,11 @@ export default function LoginForm({ validateUser, redirect }) {
     console.log(form);
     const loginResponse = await validateUser(form);
     if (loginResponse !== "Incorrect email or password") {
+      console.log(loginResponse);
       setModalContent("logged in!");
       modalRef.current.showModal();
-      const dataEncrypted = btoa(loginResponse);
-      localStorage.setItem("userData", dataEncrypted);
-      console.log(dataEncrypted);
+      const user_id = JSON.parse(loginResponse)._id;
+      localStorage.setItem("userData", user_id);
       setTimeout(() => redirect(loginResponse), 3000);
       return;
     }

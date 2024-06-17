@@ -23,8 +23,7 @@ export default function LoginPage() {
   const redirectExistingUser = async (session) => {
     "use server";
     await connectDB();
-    const userData = JSON.parse(session);
-    const user = await User.findById(userData._id).exec();
+    const user = await User.findById(session).exec();
     console.log(user);
     if (user.userType === "admin") redirect("/admin");
     if (user.userType === "admin") redirect("/user");
