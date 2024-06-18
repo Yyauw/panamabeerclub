@@ -1,8 +1,15 @@
+"use client";
+
 import ItemCard from "./catalog/ItemCard";
 import Fula from "@/public/images/Fula.png";
 import Image from "next/image";
+import { useContext } from "react";
+import { CartContext } from "./CartContext";
 
 export default function CartModal({ closeModal }) {
+  const { items, addItem } = useContext(CartContext);
+  const totalItems = items.reduce((acc, item) => acc + item.cartQuantity, 0);
+
   return (
     <>
       <div
@@ -19,7 +26,9 @@ export default function CartModal({ closeModal }) {
             <span className="font-bold">Shipping Date: </span> 1/7/2024
           </p>
         </div>
-        <p className="text-xl text-black mt-4">Current Selection: 4/6</p>
+        <p className="text-xl text-black mt-4">
+          Current Selection: {totalItems}/6
+        </p>
         <div className="">
           <div className="border-2 rounded-md bg-slate-50 grid grid-cols-4 my-3 p-2 w-[100%]">
             <figure className="">

@@ -36,7 +36,7 @@ export default function CatalogPage() {
             </div>
           </div>
         </section>
-        <section className="mainSection grid grid-cols-5 mt-4 gap-2">
+        <section className="mainSection grid grid-cols-5 my-4 gap-2">
           <aside className="col-span-1 border-2 border-primary rounded-md bg-primary p-1 ">
             <label className="input input-bordered flex items-center gap-2">
               <input type="text" className="grow" placeholder="Search" />

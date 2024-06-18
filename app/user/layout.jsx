@@ -25,24 +25,30 @@ export default function userLayout({ children }) {
   };
 
   const addItem = (item) => {
-    const existingItems = cartItems.map((i) => {
-      if (i.id === item.id) {
-        i.quantity += 1;
-        return i;
-      }
-      return i;
-    });
+    const foundItem = cartItems.find((i) => i._id === item._id);
 
-    if (existingItems.length === 0) {
-      item.quantity = 1;
-      existingItems.push(item);
+    if (foundItem) {
+      foundItem.cartQuantity += 1;
+      setCartItems([...cartItems]);
+      return;
     }
-    setCartItems(existingItems);
+
+    item.cartQuantity = 1;
+    setCartItems([...cartItems, item]);
   };
 
-  const removeItem = (id) => {
-    const newItems = cartItems.filter((item) => item.id !== id);
-    setCartItems(newItems);
+  const removeItem = (item) => {
+    const foundItem = cartItems.find((i) => i._id === item._id);
+
+    foundItem.cartQuantity -= 1;
+
+    if (foundItem.cartQuantity === 0) {
+      const newItems = cartItems.filter((i) => i._id !== item._id);
+      setCartItems(newItems);
+      return;
+    }
+
+    setCartItems([...cartItems]);
   };
 
   const cxtValue = {

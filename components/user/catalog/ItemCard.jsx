@@ -7,15 +7,28 @@ import { CartContext } from "../CartContext";
 
 export default function ItemCard({ beer }) {
   const modalRef = useRef();
-  const { items, addItem } = useContext(CartContext);
+  const { items, addItem, removeItem } = useContext(CartContext);
   const [quantity, setQuantity] = useState(0);
+  const totalItems = items.reduce((acc, item) => acc + item.cartQuantity, 0);
+
   const openModal = () => {
     modalRef.current.showModal();
   };
 
   const addHandler = () => {
+    if (totalItems === 6) {
+      alert("You can only select 6 beers");
+      return;
+    }
     setQuantity(quantity + 1);
     addItem(beer);
+    console.log(items);
+  };
+
+  const removeHandler = () => {
+    if (quantity === 0) return;
+    setQuantity(quantity - 1);
+    removeItem(beer);
   };
 
   return (
@@ -50,7 +63,9 @@ export default function ItemCard({ beer }) {
         <div className="grid grid-cols-3 mt-auto p-1">
           <div className="flex flex-row mx-auto">
             {" "}
-            <button className="btn btn-xs btn-primary">-</button>
+            <button className="btn btn-xs btn-primary" onClick={removeHandler}>
+              -
+            </button>
             <p className="mx-2">{quantity}</p>
             <button className="btn btn-xs btn-primary" onClick={addHandler}>
               +
