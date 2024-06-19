@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import CartModal from "@/components/user/CartModal";
 import { CartContext } from "@/components/user/CartContext";
 
-export default function userLayout({ children }) {
+export default function UserLayout({ children }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [userData, setUserData] = useState(undefined);
   const [cartItems, setCartItems] = useState([]);

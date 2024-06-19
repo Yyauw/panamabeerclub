@@ -119,7 +119,7 @@ export default function Home() {
             <div className="comopedir-description">
               <h5>Choose A Plan</h5>
               <p>
-                Once you ve completed the survey, <br /> it's time to choose the{" "}
+                Once you ve completed the survey, <br /> it&apos;s time to choose the{" "}
                 <br /> subscription plan that best suits <br />
                 your needs.
               </p>

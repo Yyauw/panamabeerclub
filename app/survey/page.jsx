@@ -9,7 +9,7 @@ import { useState } from "react";
 import { surveyQuestions } from "@/lib/surveyQuestions";
 import { useRouter } from "next/navigation";
 
-export default function surveyPage() {
+export default function SurveyPage() {
   const router = useRouter();
   const [preferences, setPreferences] = useState({});
   const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -78,6 +78,7 @@ export default function surveyPage() {
               {surveyQuestions[currentQuestion].options.map((i) => {
                 return (
                   <SurveyOption
+                    key={i.value}
                     value={i.value}
                     checked={selectedOption === i.value}
                   >
@@ -90,6 +91,7 @@ export default function surveyPage() {
               src={surveyQuestions[currentQuestion].img}
               layout="responsive"
               className="rounded-xl"
+              alt="survey image"
             ></Image>
           </div>
           <div className="button-group grid grid-cols-2 gap-4 mx-auto mt-6">
