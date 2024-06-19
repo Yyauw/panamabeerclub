@@ -1,7 +1,7 @@
 import CatalogFilter from "@/components/user/catalog/CatalogFilter";
 import Catalog from "@/components/user/catalog/Catalog";
 import Beer from "@/models/Beer";
-
+import SubInfo from "@/components/user/catalog/SubInfo";
 export default function CatalogPage() {
   const fetchBeers = async () => {
     "use server";
@@ -25,15 +25,7 @@ export default function CatalogPage() {
           </div>
           <div className="">
             {" "}
-            <div className="border-2 rounded-xl mt-2 bg-secondary/50 border-hidden p-4">
-              <h1 className="text-2xl font-bold text-center">Basic Plan</h1>
-              <p className="text-cbg my-3 text-center">
-                <span className="font-bold">Beers: </span> 0/6
-              </p>
-              <p className="text-center mt-4">
-                <button className="btn btn-primary btn-sm">Change Plan</button>
-              </p>
-            </div>
+            <SubInfo></SubInfo>
           </div>
         </section>
         <section className="mainSection grid grid-cols-5 my-4 gap-2">

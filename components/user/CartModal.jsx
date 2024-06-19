@@ -1,13 +1,13 @@
 "use client";
 
-import ItemCard from "./catalog/ItemCard";
+import CartItem from "./CartItem";
 import Fula from "@/public/images/Fula.png";
 import Image from "next/image";
 import { useContext } from "react";
 import { CartContext } from "./CartContext";
 
 export default function CartModal({ closeModal }) {
-  const { items, addItem } = useContext(CartContext);
+  const { items, addItem, removeItem } = useContext(CartContext);
   const totalItems = items.reduce((acc, item) => acc + item.cartQuantity, 0);
 
   return (
@@ -30,40 +30,14 @@ export default function CartModal({ closeModal }) {
           Current Selection: {totalItems}/6
         </p>
         <div className="">
-          <div className="border-2 rounded-md bg-slate-50 grid grid-cols-4 my-3 p-2 w-[100%]">
-            <figure className="">
-              {" "}
-              <Image
-                src={Fula}
-                width={30}
-                className=" max-h-[250px] object-center mx-auto"
-              />
-            </figure>
-            <h1 className="text-black text-xl col-span-2">Fula</h1>
-            <div className="flex flex-row ms-auto my-auto">
-              {" "}
-              <button className="btn btn-xs btn-primary">-</button>
-              <p className="mx-2 text-black">3</p>
-              <button className="btn btn-xs btn-primary">+</button>
-            </div>
-          </div>
-          <div className="border-2 rounded-md bg-slate-50 grid grid-cols-4 my-3 p-2 w-[100%]">
-            <figure className="">
-              {" "}
-              <Image
-                src={Fula}
-                width={30}
-                className=" max-h-[250px] object-center mx-auto"
-              />
-            </figure>
-            <h1 className="text-black text-xl col-span-2">Fula 2</h1>
-            <div className="flex flex-row ms-auto my-auto">
-              {" "}
-              <button className="btn btn-xs btn-primary">-</button>
-              <p className="mx-2 text-black">1</p>
-              <button className="btn btn-xs btn-primary">+</button>
-            </div>
-          </div>
+          {items.map((i) => (
+            <CartItem
+              item={i}
+              key={i._id}
+              addItem={addItem}
+              removeItem={removeItem}
+            ></CartItem>
+          ))}
         </div>
         <button className="mt-auto btn ">Confirm Selection</button>
       </div>

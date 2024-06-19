@@ -8,7 +8,7 @@ import { CartContext } from "../CartContext";
 export default function ItemCard({ beer }) {
   const modalRef = useRef();
   const { items, addItem, removeItem } = useContext(CartContext);
-  const [quantity, setQuantity] = useState(0);
+  const [quantity, setQuantity] = useState(beer.cartQuantity || 0);
   const totalItems = items.reduce((acc, item) => acc + item.cartQuantity, 0);
 
   const openModal = () => {
@@ -66,7 +66,7 @@ export default function ItemCard({ beer }) {
             <button className="btn btn-xs btn-primary" onClick={removeHandler}>
               -
             </button>
-            <p className="mx-2">{quantity}</p>
+            <p className="mx-2">{beer.cartQuantity || 0}</p>
             <button className="btn btn-xs btn-primary" onClick={addHandler}>
               +
             </button>
