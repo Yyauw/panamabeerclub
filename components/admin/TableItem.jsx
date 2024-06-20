@@ -9,7 +9,7 @@ export default function TableItem({ data, keys, index, type, deleteItem }) {
         {keys.map((key) => {
           return (
             <>
-              <td key={data[key]}>{data[key]}</td>
+              <td className="capitalize" key={data[key]}>{data[key]}</td>
             </>
           );
         })}

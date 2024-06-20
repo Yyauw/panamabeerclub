@@ -41,7 +41,7 @@ export default function Table({
       <div className="overflow-x-auto">
         <table className="table">
           {/* head */}
-          <thead>
+          <thead className="text-black uppercase">
             <tr>
               <th></th>
               {tableHeadFields.map((name) => (
