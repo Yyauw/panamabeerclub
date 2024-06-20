@@ -24,6 +24,7 @@ export default function Catalog({ fetchBeers }) {
     const searchQuery = searchParams.get("filter");
     const searchValue = searchParams.get("value");
     console.log(searchParams.size);
+    if (searchQuery === "all") return beers;
     if (searchQuery === null) return beers;
 
     const filteredBeers = beers.filter((beer) => {
@@ -39,7 +40,6 @@ export default function Catalog({ fetchBeers }) {
       const getBeers = async () => {
         if (beers.length === 0) {
           const beersF = JSON.parse(await fetchBeers());
-
           setBeers(beersF);
           const recommendedBeers = await filterByPreferences(beersF);
           setFilteredBeers(recommendedBeers);

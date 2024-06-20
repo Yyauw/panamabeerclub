@@ -16,6 +16,12 @@ export default function CatalogFilter() {
     <div className="text-black">
       <p
         className="ms-3 py-2 ps-1 text-xl font-medium rounded-md hover:cursor-pointer hover:bg-black/20"
+        onClick={() => query("all", "true")}
+      >
+        Todos
+      </p>
+      <p
+        className="ms-3 py-2 ps-1 text-xl font-medium rounded-md hover:cursor-pointer hover:bg-black/20"
         onClick={() => recommended()}
       >
         Recomendado

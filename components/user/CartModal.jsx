@@ -7,7 +7,8 @@ import { useContext } from "react";
 import { CartContext } from "./CartContext";
 
 export default function CartModal({ closeModal }) {
-  const { items, addItem, removeItem } = useContext(CartContext);
+  const { items, addItem, removeItem, plan, beerCapacity } =
+    useContext(CartContext);
   const totalItems = items.reduce((acc, item) => acc + item.cartQuantity, 0);
 
   return (
@@ -20,14 +21,14 @@ export default function CartModal({ closeModal }) {
         <h1 className="text-3xl font-bold text-black text-center">Beer Cart</h1>
         <div className="border-2 rounded-md bg-secondary border-hidden px-3 my-2 grid-cols-2 grid">
           <p className="text-cbg my-3 ">
-            <span className="font-bold">Plan: </span> Basic
+            <span className="font-bold">Plan: </span> {plan}
           </p>
           <p className="text-cbg my-3 ms-auto">
             <span className="font-bold">Shipping Date: </span> 1/7/2024
           </p>
         </div>
         <p className="text-xl text-black mt-4">
-          Current Selection: {totalItems}/6
+          Current Selection: {totalItems}/{beerCapacity}
         </p>
         <div className="">
           {items.map((i) => (

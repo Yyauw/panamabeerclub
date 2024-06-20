@@ -16,12 +16,9 @@ export default function ItemCard({ beer }) {
   };
 
   const addHandler = () => {
-    if (totalItems === 6) {
-      alert("You can only select 6 beers");
-      return;
+    if (addItem(beer)) {
+      setQuantity(quantity + 1);
     }
-    setQuantity(quantity + 1);
-    addItem(beer);
     console.log(items);
   };
 
@@ -30,6 +27,14 @@ export default function ItemCard({ beer }) {
     setQuantity(quantity - 1);
     removeItem(beer);
   };
+
+  useEffect(() => {
+    items.forEach((item) => {
+      if (item._id === beer._id) {
+        setQuantity(item.cartQuantity);
+      }
+    });
+  }, []);
 
   return (
     <>
@@ -66,7 +71,7 @@ export default function ItemCard({ beer }) {
             <button className="btn btn-xs btn-primary" onClick={removeHandler}>
               -
             </button>
-            <p className="mx-2">{beer.cartQuantity || 0}</p>
+            <p className="mx-2">{quantity || 0}</p>
             <button className="btn btn-xs btn-primary" onClick={addHandler}>
               +
             </button>

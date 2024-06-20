@@ -1,8 +1,24 @@
+"use client";
 import checkpricing from "@/public/images/checkpricing.svg";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useContext } from "react";
+import { CartContext } from "@/components/user/CartContext";
 
 export default function pricingPage() {
+  const { setPlan } = useContext(CartContext);
+  const router = useRouter();
+  const setPlanHandler = (plan) => {
+    localStorage.setItem("plan", plan);
+    setPlan(plan);
+    const preferences = localStorage.getItem("preferences");
+    if (preferences) {
+      router.push("/user/catalog");
+      return;
+    }
+    router.push("/survey");
+  };
   return (
     <>
       <section className="section-pricing mb-6" style={{ paddingTop: 0 }}>
@@ -21,17 +37,19 @@ export default function pricingPage() {
                   <span>20+ varieties of Craft-Beer</span>
                 </li>
               </ul>
-              <Link
-                href="https://buy.stripe.com/test_eVa8yKbftepa19K3cc"
+              <button
+                onClick={() => {
+                  setPlanHandler("basico");
+                }}
                 className="btn-pricing mt-auto"
               >
                 Select
-              </Link>
+              </button>
             </div>
           </div>
           <div className="pricing-card-brown">
             <div className="flex h-[100%] flex-col">
-              <h5>Basic</h5>
+              <h5>Expert</h5>
               <p>$29.99 Per Delivery</p>
               <ul>
                 <li>
@@ -52,12 +70,19 @@ export default function pricingPage() {
                 </li>
               </ul>
 
-              <button className="btn-pricing mt-auto">Select</button>
+              <button
+                className="btn-pricing mt-auto"
+                onClick={() => {
+                  setPlanHandler("experto");
+                }}
+              >
+                Select
+              </button>
             </div>
           </div>
           <div className="pricing-card-blue">
             <div className="flex h-[100%] flex-col">
-              <h5>Basic</h5>
+              <h5>Guru</h5>
               <p>$49.99 Per Delivery</p>
               <ul>
                 <li>
@@ -82,7 +107,14 @@ export default function pricingPage() {
                 </li>
               </ul>
 
-              <button className="btn-pricing mt-auto">Select</button>
+              <button
+                className="btn-pricing mt-auto"
+                onClick={() => {
+                  setPlanHandler("guru");
+                }}
+              >
+                Select
+              </button>
             </div>
           </div>
         </div>
