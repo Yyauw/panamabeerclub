@@ -2,9 +2,11 @@ import CatalogFilter from "@/components/user/catalog/CatalogFilter";
 import Catalog from "@/components/user/catalog/Catalog";
 import Beer from "@/models/Beer";
 import SubInfo from "@/components/user/catalog/SubInfo";
+import connectDB from "@/lib/connectDB";
 export default function CatalogPage() {
   const fetchBeers = async () => {
     "use server";
+    await connectDB();
     const beers = await Beer.find({});
     return JSON.stringify(beers);
   };

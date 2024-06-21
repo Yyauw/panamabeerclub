@@ -3,24 +3,60 @@ import checkpricing from "@/public/images/checkpricing.svg";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useContext } from "react";
+import { useContext, useRef, useState } from "react";
 import { CartContext } from "@/components/user/CartContext";
 
 export default function pricingPage() {
-  const { setPlan } = useContext(CartContext);
+  const modalRef = useRef();
+  const [plans, setPlans] = useState("basico");
+  const { setPlan, setCartItems } = useContext(CartContext);
   const router = useRouter();
   const setPlanHandler = (plan) => {
     localStorage.setItem("plan", plan);
     setPlan(plan);
     const preferences = localStorage.getItem("preferences");
+    const cartItems = localStorage.getItem("cartItems");
+    if (cartItems) {
+      localStorage.removeItem("cartItems");
+      setCartItems([]);
+    }
     if (preferences) {
       router.push("/user/catalog");
       return;
     }
     router.push("/survey");
   };
+
+  const handleConfirm = () => {
+    modalRef.current.close();
+    setPlanHandler(plans);
+  };
+
+  const openModal = (plan) => {
+    setPlans(plan);
+    modalRef.current.showModal();
+  };
+
   return (
     <>
+      <dialog id="my_modal_1" className="modal" ref={modalRef}>
+        <div className="modal-box">
+          <h3 className="font-bold text-lg">Cuidado!</h3>
+          <p className="py-4">
+            Cambiar de plan limpiara tu seleccion de cerveza, estas seguro de
+            proceder?
+          </p>
+          <div className="modal-action">
+            <button className="btn btn-success" onClick={handleConfirm}>
+              Confirmar
+            </button>
+            <form method="dialog">
+              <button className="btn btn-primary">Close</button>
+            </form>
+          </div>
+        </div>
+      </dialog>
+
       <section className="section-pricing mb-6" style={{ paddingTop: 0 }}>
         <div className="pricing-cards">
           <div className="pricing-card-blue">
@@ -39,7 +75,7 @@ export default function pricingPage() {
               </ul>
               <button
                 onClick={() => {
-                  setPlanHandler("basico");
+                  openModal("basico");
                 }}
                 className="btn-pricing mt-auto"
               >
@@ -73,7 +109,7 @@ export default function pricingPage() {
               <button
                 className="btn-pricing mt-auto"
                 onClick={() => {
-                  setPlanHandler("experto");
+                  openModal("experto");
                 }}
               >
                 Select
@@ -110,7 +146,7 @@ export default function pricingPage() {
               <button
                 className="btn-pricing mt-auto"
                 onClick={() => {
-                  setPlanHandler("guru");
+                  openModal("guru");
                 }}
               >
                 Select

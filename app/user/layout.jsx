@@ -17,7 +17,7 @@ export default function UserLayout({ children }) {
   const [content, setContent] = useState("");
 
   const handlePlan = (plan) => {
-    setCartItems([]);
+    //setCartItems([]);
     if (plan === "basico") {
       setBeerCapacity(6);
       return;
@@ -35,15 +35,29 @@ export default function UserLayout({ children }) {
   useEffect(() => {
     const user = localStorage.getItem("userData");
     const plan = localStorage.getItem("plan");
+    console.log(plan);
     if (!plan) {
       router.push("/pricing");
       return;
     }
     handlePlan(plan);
+    setPlan(plan);
     if (user) {
       setUserData(user);
     }
   }, [plan]);
+
+  useEffect(() => {
+    const items = localStorage.getItem("cartItems");
+    if (!items) return;
+    const parsedItems = JSON.parse(items);
+    setCartItems(parsedItems);
+  }, []);
+
+  useEffect(() => {
+    if (cartItems.length === 0) return;
+    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+  }, [cartItems]);
 
   const closeModal = () => {
     setIsModalOpen(false);
@@ -103,6 +117,7 @@ export default function UserLayout({ children }) {
     setPlan: setPlan,
     addItem: addItem,
     removeItem: removeItem,
+    setCartItems: setCartItems,
   };
 
   return (
