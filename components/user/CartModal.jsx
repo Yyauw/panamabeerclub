@@ -41,7 +41,11 @@ export default function CartModal({ closeModal }) {
             ></CartItem>
           ))}
         </div>
-        <Link href="./confirmation" className="mt-auto btn ">
+        <Link
+          href="./confirmation"
+          onClick={closeModal}
+          className="mt-auto btn "
+        >
           Confirm Selection
         </Link>
       </div>

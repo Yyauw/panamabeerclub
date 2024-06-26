@@ -1,7 +1,8 @@
 "use client";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 export default function TransactionPanel({ getLocalStorageData }) {
+  const initialized = useRef(false);
   useEffect(() => {
     const data = {
       userID: localStorage.getItem("userData"),
@@ -9,7 +10,7 @@ export default function TransactionPanel({ getLocalStorageData }) {
       plan: localStorage.getItem("plan"),
     };
     console.log("ejecucion");
-    getLocalStorageData(data);
+    if (!initialized.current) getLocalStorageData(data);
   }, []);
 
   return (
