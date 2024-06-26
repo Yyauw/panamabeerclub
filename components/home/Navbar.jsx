@@ -1,8 +1,17 @@
+"use client";
 import Link from "next/link";
 import Image from "next/image";
 import logo from "@/public/images/logo.svg";
+import { useState, useEffect } from "react";
 
 export default function Navbar() {
+  const [isUserLogged, setIsUserLogged] = useState(false);
+  useEffect(() => {
+    if (localStorage.getItem("userData")) {
+      setIsUserLogged(true);
+    }
+  }, []);
+
   return (
     <nav className=" text-white relative z-10">
       <div className="navbar bg-transparent grid grid-cols-2">
@@ -79,8 +88,12 @@ export default function Navbar() {
             <li className=" text-xl ">
               <Link href="/user/pricing">Pricing</Link>
             </li>
-            <li className=" text-xl text-primary">
-              <Link href="/login">Login</Link>
+            <li className=" text-xl text-primary font-bold">
+              {isUserLogged ? (
+                <Link href="/user/catalog">Catalog</Link>
+              ) : (
+                <Link href="/login">Login</Link>
+              )}
             </li>
           </ul>
         </div>

@@ -17,7 +17,8 @@
     "react": "^18",
     "react-dom": "^18",
     "react-map-gl": "^7.1.7",
-    "sharp": "^0.33.4"
+    "sharp": "^0.33.4",
+    "stripe": "^16.0.0"
   },
   "devDependencies": {
     "daisyui": "^4.10.2",

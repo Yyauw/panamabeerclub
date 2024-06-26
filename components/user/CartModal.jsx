@@ -5,6 +5,7 @@ import Fula from "@/public/images/Fula.png";
 import Image from "next/image";
 import { useContext } from "react";
 import { CartContext } from "./CartContext";
+import Link from "next/link";
 
 export default function CartModal({ closeModal }) {
   const { items, addItem, removeItem, plan, beerCapacity } =
@@ -40,7 +41,9 @@ export default function CartModal({ closeModal }) {
             ></CartItem>
           ))}
         </div>
-        <button className="mt-auto btn ">Confirm Selection</button>
+        <Link href="./confirmation" className="mt-auto btn ">
+          Confirm Selection
+        </Link>
       </div>
     </>
   );

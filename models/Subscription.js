@@ -1,12 +1,16 @@
-import mongoose from "mongoose";
+import mongoose, { Schema } from "mongoose";
 
 const Subscription = mongoose.Schema(
   {
     frequency: String,
-    price: String,
+    price: Number,
     subscriptionDate: Date,
-    plan: { type: Schema.Types.ObjectId, ref: "Plan" },
-    shipment: { type: Schema.Types.ObjectId, ref: "shipment" },
+    nextPayment: Date,
+    status: String,
+    plan: String,
+    invoice: String,
+    stripeId: String,
+    shipment: [{ type: Schema.Types.ObjectId, ref: "shipment" }],
     user: { type: Schema.Types.ObjectId, ref: "User" },
   },
   {
@@ -15,4 +19,4 @@ const Subscription = mongoose.Schema(
 );
 
 export default mongoose.models.Subscription ||
-  mongoose.model("Suscritpion", Subscription);
+  mongoose.model("Subscription", Subscription);

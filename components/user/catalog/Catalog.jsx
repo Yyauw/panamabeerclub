@@ -58,7 +58,7 @@ export default function Catalog({ fetchBeers }) {
   }, [searchParams]);
 
   return (
-    <section className="col-span-4   overflow-auto grid grid-cols-3 gap-2">
+    <section className="col-span-4   overflow-auto grid grid-cols-3 gap-2 auto-cols-min ">
       {filteredBeers.map((beer) => (
         <ItemCard key={beer._id} beer={beer}></ItemCard>
       ))}

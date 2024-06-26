@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose, { Schema } from "mongoose";
 
 const Shipment = mongoose.Schema(
   {
@@ -7,12 +7,20 @@ const Shipment = mongoose.Schema(
       {
         beer: {
           type: Schema.Types.ObjectId,
-          ref: "Address",
+          ref: "Beer",
         },
         quantity: Number,
       },
     ],
-    souvenirs: Number,
+    souvenirs: {
+      Souvenir: {
+        type: Schema.Types.ObjectId,
+        ref: "Souvenir",
+      },
+      quantity: Number,
+    },
+    status: String,
+    evidence: String,
     user: { type: Schema.Types.ObjectId, ref: "User" },
     address: { type: Schema.Types.ObjectId, ref: "Address" },
   },

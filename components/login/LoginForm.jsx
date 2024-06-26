@@ -32,15 +32,13 @@ export default function LoginForm({ validateUser, redirect }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(form);
     const loginResponse = await validateUser(form);
     if (loginResponse !== "Incorrect email or password") {
-      console.log(loginResponse);
       setModalContent("logged in!");
       modalRef.current.showModal();
       const user_id = JSON.parse(loginResponse)._id;
       localStorage.setItem("userData", user_id);
-      setTimeout(() => redirect(loginResponse), 3000);
+      setTimeout(() => redirect(user_id), 3000);
       return;
     }
     setModalContent(loginResponse);

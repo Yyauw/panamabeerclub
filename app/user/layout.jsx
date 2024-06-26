@@ -36,8 +36,9 @@ export default function UserLayout({ children }) {
     const user = localStorage.getItem("userData");
     const plan = localStorage.getItem("plan");
     console.log(plan);
+    if (user) setUserData(user);
     if (!plan) {
-      router.push("/pricing");
+      router.push("./pricing");
       return;
     }
     handlePlan(plan);

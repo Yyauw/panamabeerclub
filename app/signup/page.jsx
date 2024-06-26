@@ -20,7 +20,7 @@ export default function signupPage() {
     const user = await User.findById(session).exec();
     console.log(user);
     if (user.userType === "admin") redirect("/admin");
-    if (user.userType === "admin") redirect("/user");
+    if (user.userType === "client") redirect("/user/catalog");
   };
 
   const createUser = async (userData) => {

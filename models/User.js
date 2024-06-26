@@ -21,16 +21,22 @@ const User = mongoose.Schema(
       enum: ["client", "admin", "delivery"],
     },
     preference: {
-      style: [String],
+      style: String,
       ibu: Number,
       alc: Number,
-      aroma: [String],
-      body: [String],
+      aroma: String,
+      body: String,
     },
     address: [
       {
         type: Schema.Types.ObjectId,
         ref: "Address",
+      },
+    ],
+    shipments: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Shipment",
       },
     ],
   },

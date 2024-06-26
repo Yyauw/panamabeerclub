@@ -117,6 +117,11 @@ export default function UserNavbar({ openModal, isUserLogged }) {
                         Historial
                       </Link>
                     </li>
+                    <li>
+                      <Link href="/logout" className="text-xl">
+                        Logout
+                      </Link>
+                    </li>
                   </ul>
                 </div>
               ) : (

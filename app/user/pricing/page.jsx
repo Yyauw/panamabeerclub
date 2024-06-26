@@ -33,8 +33,14 @@ export default function pricingPage() {
   };
 
   const openModal = (plan) => {
+    const cartItems = localStorage.getItem("cartItems");
+    if (cartItems) {
+      setPlans(plan);
+      modalRef.current.showModal();
+      return;
+    }
     setPlans(plan);
-    modalRef.current.showModal();
+    setPlanHandler(plans);
   };
 
   return (
