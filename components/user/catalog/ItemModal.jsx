@@ -10,7 +10,7 @@ export default function ItemModal({ item, modalRef }) {
             <img
               src={item.image}
               alt={item.name}
-              className=" max-w-[25vw] object-center m-auto"
+              className=" max-w-[25vw] object-center m-auto max-h-[500px]"
             />
           </figure>
           <div className="p-2 text-black">

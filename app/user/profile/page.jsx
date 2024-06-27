@@ -3,6 +3,9 @@ import AddressSection from "@/components/user/profile/AddressSection";
 import Address from "@/models/Address";
 import User from "@/models/User";
 import connectDB from "@/lib/connectDB";
+import SubcriptionCard from "@/components/user/profile/SubcriptionCard";
+import Subscription from "@/models/Subscription";
+import Stripe from "stripe";
 
 export default function userProfile() {
   const addNewAddress = async (id, address) => {
@@ -36,6 +39,40 @@ export default function userProfile() {
     return JSON.stringify(user);
   };
 
+  const fetchSubcriptionData = async (id) => {
+    "use server";
+    await connectDB();
+    const sucriptionInfo = await Subscription.findOne({ user: id }).populate(
+      "user"
+    );
+    console.log(id);
+    return JSON.stringify(sucriptionInfo);
+  };
+
+  const cancelSubcription = async (id) => {
+    "use server";
+    const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+    await connectDB();
+    await stripe.subscriptions.update(id, {
+      cancel_at_period_end: true,
+    });
+    const subscription = await Subscription.findOne({ stripeId: id });
+    subscription.status = "cancelado";
+    await subscription.save();
+  };
+
+  const reActivateSubcription = async (id) => {
+    "use server";
+    const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+    await connectDB();
+    const subscription = await Subscription.findOne({ stripeId: id });
+    await stripe.subscriptions.update(id, {
+      cancel_at_period_end: false,
+    });
+    subscription.status = "activo";
+    await subscription.save();
+  };
+
   return (
     <>
       <TopSection fetchUserData={fetchUserData}></TopSection>
@@ -47,21 +84,11 @@ export default function userProfile() {
           deleteAddress={deleteAddress}
         ></AddressSection>
         <div className="w-[40%] p-2 px-10">
-          <div className="border-2 rounded-md mt-2 bg-secondary border-hidden p-4">
-            <h1 className="text-2xl font-bold text-center">Subscription</h1>
-            <p className="text-cbg my-3 ">
-              <span className="font-bold">Plan: </span> Basic
-            </p>
-            <p className="text-cbg my-3 ">
-              <span className="font-bold">Next payment: </span> 1/7/2024
-            </p>
-            <p className="text-cbg my-3 ">
-              <span className="font-bold">Billing: </span> 14.99$
-            </p>
-            <p className="text-center mt-4">
-              <button className="btn btn-primary ">Change Plan</button>
-            </p>
-          </div>
+          <SubcriptionCard
+            fetchSubcriptionData={fetchSubcriptionData}
+            cancelSubcription={cancelSubcription}
+            reActivateSubcription={reActivateSubcription}
+          ></SubcriptionCard>
         </div>
       </section>
     </>

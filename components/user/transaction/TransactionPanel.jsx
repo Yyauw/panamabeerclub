@@ -10,7 +10,10 @@ export default function TransactionPanel({ getLocalStorageData }) {
       plan: localStorage.getItem("plan"),
     };
     console.log("ejecucion");
-    if (!initialized.current) getLocalStorageData(data);
+    if (!initialized.current) {
+      initialized.current = true;
+      getLocalStorageData(data);
+    }
   }, []);
 
   return (

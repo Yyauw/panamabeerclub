@@ -31,7 +31,7 @@ export default function CartModal({ closeModal }) {
         <p className="text-xl text-black mt-4">
           Current Selection: {totalItems}/{beerCapacity}
         </p>
-        <div className="">
+        <div className="overflow-auto">
           {items.map((i) => (
             <CartItem
               item={i}

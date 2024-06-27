@@ -56,7 +56,7 @@ export default async function successPage(req) {
     console.log(data.userID);
     const subscription = new Subscription({
       frequency: "monthly",
-      status: "active",
+      status: "activo",
       plan: data.plan,
       price: invoice.amount_due / 100,
       subscriptionDate: new Date(invoice.period_start * 1000),
