@@ -34,7 +34,18 @@ export default function Catalog({ fetchBeers }) {
     return filteredBeers;
   };
 
+  const filterBySearch = (beers) => {
+    const searchQuery = searchParams.get("search");
+    if (!searchQuery) return beers;
+    const filteredBeers = beers.filter((beer) => {
+      return beer.name.toLowerCase().includes(searchQuery.toLowerCase());
+    });
+    return filteredBeers;
+  };
+
   useEffect(() => {
+    const search = searchParams.get("search");
+
     if (searchParams.size === 0) {
       console.log("fetching beers");
       const getBeers = async () => {
@@ -50,6 +61,10 @@ export default function Catalog({ fetchBeers }) {
         setFilteredBeers(recommendedBeers);
       };
       getBeers();
+      return;
+    }
+    if (search) {
+      setFilteredBeers(filterBySearch(beers));
       return;
     }
     const filteredBeers = filterBeers(beers);

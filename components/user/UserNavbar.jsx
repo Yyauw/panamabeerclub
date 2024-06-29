@@ -113,7 +113,7 @@ export default function UserNavbar({ openModal, isUserLogged }) {
                       </Link>
                     </li>
                     <li>
-                      <Link href="/user/profile" className="text-xl">
+                      <Link href="/user/orders" className="text-xl">
                         Historial
                       </Link>
                     </li>

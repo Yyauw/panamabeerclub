@@ -9,6 +9,8 @@ export default function logoutPage() {
     localStorage.removeItem("preferences");
     localStorage.removeItem("cartItems");
     localStorage.removeItem("beerCapacity");
+    localStorage.removeItem("address");
+    localStorage.removeItem("subscription");
     router.push("/");
   }, []);
 

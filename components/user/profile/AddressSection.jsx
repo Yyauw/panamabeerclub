@@ -39,6 +39,7 @@ export default function AddressSection({
 
   const handleConfirm = () => {
     deleteAddress(userData._id, addID);
+    localStorage.removeItem("address");
     setChange(!change);
     confirmationModalRef.current.close();
   };

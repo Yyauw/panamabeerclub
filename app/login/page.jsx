@@ -7,6 +7,7 @@ import Image from "next/image";
 import bglogin from "@/public/images/bg-login.svg";
 import LoginForm from "@/components/login/LoginForm";
 import { redirect } from "next/navigation";
+import Subscription from "@/models/Subscription";
 
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "@/lib/firebaseConfig";
@@ -19,6 +20,13 @@ export default function LoginPage() {
   //   console.log(users[0]);
   // };
   // //fetchUsers();
+
+  const loadSubscription = async (id) => {
+    "use server";
+    await connectDB();
+    const subscription = await Subscription.findOne({ user: id });
+    return JSON.stringify(subscription);
+  };
 
   const redirectExistingUser = async (session) => {
     "use server";
@@ -77,6 +85,7 @@ export default function LoginPage() {
         <LoginForm
           validateUser={validateUser}
           redirect={redirectExistingUser}
+          loadSubscription={loadSubscription}
         ></LoginForm>
       </div>
     </>

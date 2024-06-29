@@ -50,7 +50,7 @@ export default function SignupForm({ createUser, redirect }) {
         //console.log(dataEncrypted);
         localStorage.setItem("userData", user_id);
         //console.log(atob(dataEncrypted));
-        setTimeout(() => router.push("/user"), 3000);
+        setTimeout(() => router.push("/user/catalog"), 3000);
         return;
       }
       setModalContent(createUserResponse);

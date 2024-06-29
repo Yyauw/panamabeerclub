@@ -5,6 +5,7 @@ import User from "@/models/User";
 import Address from "@/models/Address";
 import Subscription from "@/models/Subscription";
 import Shipment from "@/models/Shipment";
+import Beer from "@/models/Beer";
 
 const errorTemplate = (
   <div className="h-[80vh]">
@@ -12,6 +13,37 @@ const errorTemplate = (
     <p> something went wrong.</p>
   </div>
 );
+
+const fillRandomBeers = async (beers, capacity) => {
+  const totalItems = beers.reduce((acc, item) => acc + item.cartQuantity, 0);
+  const beersArr = beers.map((beer) => {
+    return {
+      beer: beer._id,
+      quantity: beer.cartQuantity,
+    };
+  });
+  if (totalItems < capacity) {
+    const remaining = capacity - totalItems;
+    const idsExcluir = beers.map((beer) => beer._id);
+    await connectDB();
+    const cervezasAleatorias = await Beer.aggregate([
+      { $match: { _id: { $nin: idsExcluir } } }, // Excluye los IDs especificados
+      { $sample: { size: remaining } }, // Añade un campo `cartQuantity` con valor 1
+      { $project: { _id: 1 } },
+    ]);
+    const cervezasNuevas = cervezasAleatorias.map((cerveza) => {
+      return {
+        beer: cerveza._id,
+        quantity: 1,
+      };
+    });
+    const cer = [...beersArr, ...cervezasNuevas];
+
+    return cer;
+  } else {
+    return beersArr;
+  }
+};
 
 const assingDelivery = async (shipment) => {
   await connectDB();
@@ -53,7 +85,7 @@ export default async function successPage(req) {
     await connectDB();
     const user = await User.findById(data.userID);
     const beers = JSON.parse(data.CartItems);
-    console.log(data.userID);
+    //console.log(data.userID);
     const subscription = new Subscription({
       frequency: "monthly",
       status: "activo",
@@ -65,19 +97,14 @@ export default async function successPage(req) {
       invoice: invoice.invoice_pdf,
       user: user._id,
     });
-    const beerCart = beers.map((beer) => {
-      return {
-        beer: beer._id,
-        quantity: beer.cartQuantity,
-      };
-    });
-
+    const beerCart = await fillRandomBeers(beers, data.capacity);
+    console.log(beerCart);
     const shipment = new Shipment({
       shippingDate: new Date((invoice.period_end + 7 * 24 * 60 * 60) * 1000),
       beers: beerCart,
       status: "pending",
       user: user._id,
-      address: "667b67bc09ba201a6f9ad660",
+      address: data.address,
       evidence: "",
     });
     await shipment.save();
@@ -86,7 +113,7 @@ export default async function successPage(req) {
 
     await subscription.save();
 
-    console.log(subscription);
+    //console.log(subscription);
   };
 
   const getLocalStorageData = async (data) => {

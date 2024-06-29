@@ -6,12 +6,12 @@ import Link from "next/link";
 export default function AddressCard({ address, deleteAddress }) {
   return (
     <div className="border-2 rounded-md p-3 bg-white text-black my-2">
-      <div className="grid grid-cols-3 mb-2">
+      <div className="grid grid-cols-5 mb-2">
         <div className=""></div>
-        <h1 className="text-center font-bold text-xl uppercase">
+        <h1 className="text-center font-bold text-xl uppercase col-span-3">
           {address.address}
         </h1>
-        <div className="flex flex-row justify-end">
+        <div className="flex flex-row justify-end ">
           {/* <Image
             src={editIcon}
             width={30}

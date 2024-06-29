@@ -6,7 +6,11 @@ import Modal from "../Modal";
 import { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/navigation";
 
-export default function LoginForm({ validateUser, redirect }) {
+export default function LoginForm({
+  validateUser,
+  redirect,
+  loadSubscription,
+}) {
   const router = useRouter();
   const [form, setForm] = useState({
     email: "",
@@ -36,9 +40,18 @@ export default function LoginForm({ validateUser, redirect }) {
     if (loginResponse !== "Incorrect email or password") {
       setModalContent("logged in!");
       modalRef.current.showModal();
-      const user_id = JSON.parse(loginResponse)._id;
-      localStorage.setItem("userData", user_id);
-      setTimeout(() => redirect(user_id), 3000);
+      const user = JSON.parse(loginResponse);
+      if (user.preference) {
+        const preferences = JSON.stringify(user.preference);
+        localStorage.setItem("preferences", preferences);
+      }
+      const subscription = await loadSubscription(user._id);
+      if (subscription) {
+        localStorage.setItem("plan", JSON.parse(subscription).plan);
+        localStorage.setItem("subscription", subscription);
+      }
+      localStorage.setItem("userData", user._id);
+      setTimeout(() => redirect(user._id), 3000);
       return;
     }
     setModalContent(loginResponse);

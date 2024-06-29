@@ -8,6 +8,8 @@ export default function TransactionPanel({ getLocalStorageData }) {
       userID: localStorage.getItem("userData"),
       CartItems: localStorage.getItem("cartItems"),
       plan: localStorage.getItem("plan"),
+      address: localStorage.getItem("address"),
+      capacity: localStorage.getItem("capacity"),
     };
     console.log("ejecucion");
     if (!initialized.current) {

@@ -40,7 +40,7 @@ export default function pricingPage() {
       return;
     }
     setPlans(plan);
-    setPlanHandler(plans);
+    setPlanHandler(plan);
   };
 
   return (

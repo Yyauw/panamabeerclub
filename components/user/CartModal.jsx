@@ -24,9 +24,6 @@ export default function CartModal({ closeModal }) {
           <p className="text-cbg my-3 ">
             <span className="font-bold">Plan: </span> {plan}
           </p>
-          <p className="text-cbg my-3 ms-auto">
-            <span className="font-bold">Shipping Date: </span> 1/7/2024
-          </p>
         </div>
         <p className="text-xl text-black mt-4">
           Current Selection: {totalItems}/{beerCapacity}
