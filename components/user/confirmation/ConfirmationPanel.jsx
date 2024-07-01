@@ -18,12 +18,16 @@ const checkAddress = () => {
 
 const checkPlan = () => {
   const plan = localStorage.getItem("plan");
-  if (plan === "basico") return "price_1PNP8tIJkH0G341VKxYIdihH";
-  if (plan === "experto") return "price_1PWJFTIJkH0G341VJv8Q1UYL";
-  if (plan === "guru") return "price_1PWJIJIJkH0G341VUBsgMkws";
+  if (plan === "basico") return "price_1PXDOUIJkH0G341VFbCs3jAI";
+  if (plan === "experto") return "price_1PXDLrIJkH0G341VN73a2lSG";
+  if (plan === "guru") return "price_1PXDOvIJkH0G341VEORmZQf1";
 };
 
-export default function ConfirmationPanel({ fetchUser, fetchSubcription }) {
+export default function ConfirmationPanel({
+  fetchUser,
+  fetchSubcription,
+  createShipment,
+}) {
   const { items, plan, beerCapacity } = useContext(CartContext);
   const [userData, setUserData] = useState();
   const [subscription, setSubscription] = useState();
@@ -31,6 +35,9 @@ export default function ConfirmationPanel({ fetchUser, fetchSubcription }) {
   const [userCart, setUserCart] = useState(items);
   const modalRef = useRef();
   const router = useRouter();
+  const [isInPeriod, setIsInPeriod] = useState(false);
+  const [minDate, setMinDate] = useState("");
+  const [selectedDate, setSelectedDate] = useState(null);
 
   const handleConfirmation = async () => {
     let isDataComplete = false;
@@ -52,7 +59,31 @@ export default function ConfirmationPanel({ fetchUser, fetchSubcription }) {
       return;
     }
 
+    if (!selectedDate) {
+      setContent("Por favor selecciona una fecha de envio");
+      modalRef.current.showModal();
+      return;
+    }
+
     if (checkAddress()) isDataComplete = true;
+
+    if (isInPeriod) {
+      const res = await createShipment(
+        userCart,
+        userData._id,
+        subscription._id,
+        localStorage.getItem("address"),
+        localStorage.getItem("capacity")
+      );
+      if (res) {
+        setContent(
+          "Tu pedido ha sido procesado, puedes verlo en tu historial de pedidos."
+        );
+        modalRef.current.showModal();
+        setTimeout(() => router.push("/user/orders"), 3000);
+      }
+      return;
+    }
 
     if (isDataComplete) {
       const res = await fetch("/api/pay", {
@@ -110,7 +141,7 @@ export default function ConfirmationPanel({ fetchUser, fetchSubcription }) {
 
       const randItem = {
         _id: "69",
-        name: "Random",
+        name: "Cerveza Aleatoria",
         image: misterio.src,
         cartQuantity: remaining,
       };
@@ -119,6 +150,34 @@ export default function ConfirmationPanel({ fetchUser, fetchSubcription }) {
       console.log(userCart);
     }
   }, [items]);
+
+  useEffect(() => {
+    const calculateMinDate = () => {
+      const today = new Date();
+      const nextWeek = new Date(today);
+      nextWeek.setDate(today.getDate() + 7);
+
+      // Formatea la fecha en YYYY-MM-DD para usar en el input
+      const year = nextWeek.getFullYear();
+      const month = String(nextWeek.getMonth() + 1).padStart(2, "0"); // Los meses en JavaScript son de 0 a 11
+      const day = String(nextWeek.getDate()).padStart(2, "0");
+
+      return `${year}-${month}-${day}`;
+    };
+
+    setMinDate(calculateMinDate());
+
+    const subcription2 = JSON.parse(localStorage.getItem("subscription"));
+    if (subcription2) setIsInPeriod(true);
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("deliveryDate", selectedDate);
+  }, [selectedDate]);
+
+  const handleDateChange = (event) => {
+    setSelectedDate(event.target.value);
+  };
 
   return (
     <>
@@ -161,8 +220,10 @@ export default function ConfirmationPanel({ fetchUser, fetchSubcription }) {
               )}
             </div>
             <div className="txt-info-section text-black">
-              <p className="text-cbg my-3 ">
-                <span className="font-bold">Nombre: </span>{" "}
+              <p className="text-cbg my-3 capitalize">
+                <span className="notranslate font-bold capitalize">
+                  Nombre:{" "}
+                </span>{" "}
                 {userData?.name + " " + userData?.lastName}
               </p>
               <p className="text-cbg my-3 ">
@@ -176,6 +237,27 @@ export default function ConfirmationPanel({ fetchUser, fetchSubcription }) {
                 <span className="font-bold">BirthDate: </span>{" "}
                 {userData?.birthDate.split("T")[0]}
               </p>
+              {!isInPeriod && (
+                <p className="text-cbg my-3">
+                  <span className="font-bold">Subcripcion a comprar: </span>{" "}
+                  plan {plan}
+                </p>
+              )}
+            </div>
+            <div className="fechaSelecion">
+              <h1 className="text-black font-bold ">Fecha de envio</h1>
+              <label className="input input-bordered flex items-center gap-2 m-1">
+                <input
+                  type="date"
+                  className="grow"
+                  placeholder="deliveryDate"
+                  name="deliveryDate"
+                  id="deliveryDate"
+                  required
+                  min={minDate}
+                  onChange={handleDateChange}
+                />
+              </label>
             </div>
             <div className="direction-select mt-auto">
               <h1 className="text-black font-bold ">Direccion de envio</h1>
@@ -194,7 +276,7 @@ export default function ConfirmationPanel({ fetchUser, fetchSubcription }) {
             className="btn btn-primary mt-auto row-span-2"
             onClick={handleConfirmation}
           >
-            Confirmar
+            {!isInPeriod ? "Confirmar" : "Confirmar seleccion de cervezas"}
           </button>
         </div>
       </section>

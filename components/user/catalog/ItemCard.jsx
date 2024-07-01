@@ -50,9 +50,11 @@ export default function ItemCard({ beer }) {
             />
           </figure>
           <div className="col-span-2 p-2">
-            <h1 className="text-2xl font-bold uppercase mb-2">{beer.name}</h1>
+            <h1 className="notranslate text-2xl font-bold uppercase mb-2">
+              {beer.name}
+            </h1>
             <p>
-              <span className="font-bold">Style:</span> {beer.style}
+              <span className="notranslate font-bold">Style:</span> {beer.style}
             </p>
             <p>
               <span className="font-bold">Body:</span> {beer.body}

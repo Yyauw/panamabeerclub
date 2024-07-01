@@ -58,7 +58,7 @@ export default function SubcriptionCard({
               </p>
               <p className="text-cbg my-3 ">
                 <span className="font-bold">Billing: </span>{" "}
-                {subscription?.price}$
+                {subscription?.price}$ + ITBMS
               </p>
             </>
           ) : null}

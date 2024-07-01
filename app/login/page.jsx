@@ -25,6 +25,7 @@ export default function LoginPage() {
     "use server";
     await connectDB();
     const subscription = await Subscription.findOne({ user: id });
+    if (!subscription) return null;
     return JSON.stringify(subscription);
   };
 

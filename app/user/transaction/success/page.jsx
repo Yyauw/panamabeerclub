@@ -6,6 +6,7 @@ import Address from "@/models/Address";
 import Subscription from "@/models/Subscription";
 import Shipment from "@/models/Shipment";
 import Beer from "@/models/Beer";
+import Souvenir from "@/models/Souvenir";
 
 const errorTemplate = (
   <div className="h-[80vh]">
@@ -43,6 +44,15 @@ const fillRandomBeers = async (beers, capacity) => {
   } else {
     return beersArr;
   }
+};
+
+const subtractBeerStock = async (beers) => {
+  await connectDB();
+  beers.forEach(async (beer) => {
+    const cerveza = await Beer.findById(beer.beer);
+    cerveza.stock -= beer.quantity;
+    await cerveza.save();
+  });
 };
 
 const assingDelivery = async (shipment) => {
@@ -99,19 +109,28 @@ export default async function successPage(req) {
     });
     const beerCart = await fillRandomBeers(beers, data.capacity);
     console.log(beerCart);
+
     const shipment = new Shipment({
-      shippingDate: new Date((invoice.period_end + 7 * 24 * 60 * 60) * 1000),
+      shippingDate: new Date(data.deliveryDate),
       beers: beerCart,
       status: "pending",
       user: user._id,
       address: data.address,
       evidence: "",
     });
+
+    if (data.plan !== "basico") {
+      const souvenir = await Souvenir.findOne();
+      shipment.souvenirs = { souvenir: souvenir._id, quantity: 1 };
+    }
+
+    await subtractBeerStock(beerCart);
     await shipment.save();
     assingDelivery(shipment);
     subscription.shipment.push(shipment);
 
     await subscription.save();
+    return subscription;
 
     //console.log(subscription);
   };
@@ -119,13 +138,12 @@ export default async function successPage(req) {
   const getLocalStorageData = async (data) => {
     "use server";
     console.log(data);
-    createSubcription(data);
+    const sub = await createSubcription(data);
+    return JSON.stringify(sub);
   };
 
   return (
-    <div className="h-[80vh]">
-      <h1>Confirmation</h1>
-      <p>Payment completed.</p>
+    <div>
       <TransactionPanel
         getLocalStorageData={getLocalStorageData}
       ></TransactionPanel>

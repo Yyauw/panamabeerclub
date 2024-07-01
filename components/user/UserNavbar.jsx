@@ -32,24 +32,48 @@ export default function UserNavbar({ openModal, isUserLogged }) {
               className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
             >
               <li>
-                <Link href="/">Home</Link>
+                <Link href="/" className="notranslate ">
+                  Home
+                </Link>
               </li>
-              {/* 
-                            <li>
-                                <Link href="/pages/sobrenosotros">About</Link>
-                            </li>
-                            <li>
-                                <Link href="/pages/planes">Princing</Link>
-                            </li> 
-                            */}
-              <li className="item-navegacion-login">
-                <Link href="/login">Login</Link>
+
+              <li>
+                <Link href="/user/catalog">Catalogo</Link>
               </li>
+              <li>
+                <Link href="/user/pricing">Princing</Link>
+              </li>
+              {isUserLogged ? (
+                <>
+                  <li>
+                    <Link href="/user/profile" className="notranslate ">
+                      Perfil
+                    </Link>
+                  </li>
+
+                  <li>
+                    <Link href="/user/orders" className="notranslate">
+                      Historial
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/logout" className="text-red-500">
+                      Logout
+                    </Link>
+                  </li>
+                </>
+              ) : (
+                <li className="item-navegacion-login">
+                  <Link href="/login" className="notranslate ">
+                    Login
+                  </Link>
+                </li>
+              )}
             </ul>
           </div>
           <div className="title-web">
-            <Link href="/" className="text-xl md:hidden">
-              Panama<span className="text-primary">BeerClub</span>
+            <Link href="/" className="text-xl md:hidden notranslate ">
+              Panama<span className="notranslate text-primary">BeerClub</span>
             </Link>
             <h1 className="text-2xl">
               <Link href="/">
@@ -68,7 +92,7 @@ export default function UserNavbar({ openModal, isUserLogged }) {
         <div className="hidden lg:flex mx-auto">
           <ul className="menu menu-horizontal px-1 flex flex-row">
             <li className="text-xl">
-              <Link href="/">Home</Link>
+              <Link href="/">Inicio</Link>
             </li>
             {/*                        <li>
                             <Link href="/sobre/nosotros">About</Link>
@@ -77,7 +101,7 @@ export default function UserNavbar({ openModal, isUserLogged }) {
                             <Link href="/planes">Princing</Link>
                         </li> */}
             <li className=" text-xl ">
-              <Link href="/user/catalog">Catalog</Link>
+              <Link href="/user/catalog">Catalogo</Link>
             </li>
             <li className=" text-xl ">
               <Link href="/user/pricing">Pricing</Link>
@@ -113,7 +137,7 @@ export default function UserNavbar({ openModal, isUserLogged }) {
                       </Link>
                     </li>
                     <li>
-                      <Link href="/user/orders" className="text-xl">
+                      <Link href="/user/orders" className="notranslate text-xl">
                         Historial
                       </Link>
                     </li>

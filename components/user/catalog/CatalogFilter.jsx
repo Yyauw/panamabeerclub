@@ -19,7 +19,7 @@ export default function CatalogFilter() {
   };
 
   return (
-    <aside className="col-span-1 border-2 border-primary rounded-md bg-primary p-1 ">
+    <aside className="col-span-1 border-2 border-primary rounded-md bg-primary p-1 hidden md:block">
       <label className="input input-bordered flex items-center gap-2">
         <input
           type="text"
@@ -83,31 +83,31 @@ export default function CatalogFilter() {
           <div className="collapse-title text-xl font-medium">Style</div>
           <div className="collapse-content">
             <p
-              className="p-1 rounded-md hover:cursor-pointer hover:bg-black/20"
+              className="notranslate p-1 rounded-md hover:cursor-pointer hover:bg-black/20"
               onClick={() => query("style", "lager")}
             >
               Lager
             </p>
             <p
-              className="p-1 rounded-md hover:cursor-pointer hover:bg-black/20"
+              className="notranslate p-1 rounded-md hover:cursor-pointer hover:bg-black/20"
               onClick={() => query("style", "ale")}
             >
               Ale
             </p>
             <p
-              className="p-1 rounded-md hover:cursor-pointer hover:bg-black/20"
+              className="notranslate p-1 rounded-md hover:cursor-pointer hover:bg-black/20"
               onClick={() => query("style", "ipa")}
             >
               Ipa
             </p>
             <p
-              className="p-1 rounded-md hover:cursor-pointer hover:bg-black/20"
+              className="notranslate p-1 rounded-md hover:cursor-pointer hover:bg-black/20"
               onClick={() => query("style", "pilsner")}
             >
               Pilsner
             </p>
             <p
-              className="p-1 rounded-md hover:cursor-pointer hover:bg-black/20"
+              className="notranslate p-1 rounded-md hover:cursor-pointer hover:bg-black/20"
               onClick={() => query("style", "stout")}
             >
               Stout

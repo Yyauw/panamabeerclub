@@ -13,7 +13,7 @@ const Shipment = mongoose.Schema(
       },
     ],
     souvenirs: {
-      Souvenir: {
+      souvenir: {
         type: Schema.Types.ObjectId,
         ref: "Souvenir",
       },

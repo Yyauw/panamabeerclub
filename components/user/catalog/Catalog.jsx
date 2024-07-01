@@ -1,9 +1,11 @@
 "use client";
 import ItemCard from "./ItemCard";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
+import { CartContext } from "../CartContext";
 import { useSearchParams, useRouter } from "next/navigation";
 
 export default function Catalog({ fetchBeers }) {
+  const { plan } = useContext(CartContext);
   const router = useRouter();
   const searchParams = useSearchParams();
   const [beers, setBeers] = useState([]);
@@ -44,6 +46,13 @@ export default function Catalog({ fetchBeers }) {
   };
 
   useEffect(() => {
+    const isPlanSet = localStorage.getItem("plan");
+    if (!isPlanSet) {
+      router.push("/user/pricing");
+    }
+  }, [plan]);
+
+  useEffect(() => {
     const search = searchParams.get("search");
 
     if (searchParams.size === 0) {
@@ -73,7 +82,7 @@ export default function Catalog({ fetchBeers }) {
   }, [searchParams]);
 
   return (
-    <section className="col-span-4   overflow-auto grid grid-cols-3 gap-2 auto-cols-min ">
+    <section className=" col-span-4   overflow-auto grid grid-cols-1 md:grid-cols-3 gap-2 auto-cols-min ">
       {filteredBeers.map((beer) => (
         <ItemCard key={beer._id} beer={beer}></ItemCard>
       ))}

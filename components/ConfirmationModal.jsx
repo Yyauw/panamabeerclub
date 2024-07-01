@@ -13,7 +13,7 @@ export default function ConfirmationModal({
             Confirmar
           </button>
           <form method="dialog">
-            <button className="btn btn-primary">Close</button>
+            <button className="btn btn-primary">Cerrar</button>
           </form>
         </div>
       </div>

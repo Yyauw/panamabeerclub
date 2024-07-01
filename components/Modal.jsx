@@ -6,7 +6,7 @@ const Modal = ({ modalRef, content }) => {
         <p className="py-4">{content}</p>
         <div className="modal-action">
           <form method="dialog">
-            <button className="btn btn-primary">Close</button>
+            <button className="btn btn-primary">Cerrar</button>
           </form>
         </div>
       </div>

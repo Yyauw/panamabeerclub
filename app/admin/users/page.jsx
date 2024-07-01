@@ -20,15 +20,7 @@ export default async function usersAdminPage() {
     };
   });
 
-  const fields = [
-    "name",
-    "email",
-    "phoneNumber",
-    "birthDate",
-    "subscription",
-    "subscriptionDate",
-    "userType",
-  ];
+  const fields = ["name", "email", "phoneNumber", "birthDate", "userType"];
 
   const deleteUser = async (id) => {
     "use server";

@@ -4,12 +4,12 @@ export default function Footer() {
   return (
     <footer className="section-footer relative z-10">
       <div>
-        <h2>
+        <h2 className="notranslate">
           Panama
           <br />
-          <span>BeerClub</span>
+          <span className="notranslate">BeerClub</span>
         </h2>
-        <p>PanamaBeerClub</p>
+        <p className="notranslate">PanamaBeerClub</p>
         <p>Copyright © 2024 - All right reserved</p>
       </div>
       <div className="footer-sections">

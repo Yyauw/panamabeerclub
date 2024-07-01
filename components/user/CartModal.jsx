@@ -3,14 +3,33 @@
 import CartItem from "./CartItem";
 import Fula from "@/public/images/Fula.png";
 import Image from "next/image";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { CartContext } from "./CartContext";
 import Link from "next/link";
 
 export default function CartModal({ closeModal }) {
+  const [sub, setSub] = useState(false);
+  const [isInPeriod, setIsInPeriod] = useState(false);
   const { items, addItem, removeItem, plan, beerCapacity } =
     useContext(CartContext);
   const totalItems = items.reduce((acc, item) => acc + item.cartQuantity, 0);
+
+  useEffect(() => {
+    const subcription = JSON.parse(localStorage.getItem("subscription"));
+    if (subcription) {
+      const subcriptionDate = new Date(subcription.subscriptionDate);
+      subcription.deliveryDate = subcriptionDate.setDate(
+        subcriptionDate.getDate() + 7
+      );
+      const today = new Date();
+
+      subcription.deliveryDate = new Date(
+        subcription.deliveryDate
+      ).toLocaleDateString();
+      setIsInPeriod(today < new Date(subcription.nextPayment));
+    }
+    setSub(subcription);
+  }, []);
 
   return (
     <>
@@ -25,26 +44,41 @@ export default function CartModal({ closeModal }) {
             <span className="font-bold">Plan: </span> {plan}
           </p>
         </div>
-        <p className="text-xl text-black mt-4">
-          Current Selection: {totalItems}/{beerCapacity}
-        </p>
-        <div className="overflow-auto">
-          {items.map((i) => (
-            <CartItem
-              item={i}
-              key={i._id}
-              addItem={addItem}
-              removeItem={removeItem}
-            ></CartItem>
-          ))}
-        </div>
-        <Link
-          href="./confirmation"
-          onClick={closeModal}
-          className="mt-auto btn "
-        >
-          Confirm Selection
-        </Link>
+
+        {isInPeriod ? (
+          <p className="text-black text-center text-xl font-bold">
+            Ya has seleccionado tu cervezas en este periodo. Podras seleccionar
+            tus proximas cervezas despues de el {sub?.nextPayment.split("T")[0]}
+            <br />
+            Puedes ver tus pedidos{" "}
+            <Link href="/user/orders" className="link link-secondary">
+              aqui
+            </Link>
+          </p>
+        ) : (
+          <>
+            <p className="notranslate text-xl text-black mt-4">
+              Current Selection: {totalItems}/{beerCapacity}
+            </p>
+            <div className="overflow-auto">
+              {items.map((i) => (
+                <CartItem
+                  item={i}
+                  key={i._id}
+                  addItem={addItem}
+                  removeItem={removeItem}
+                ></CartItem>
+              ))}
+            </div>
+            <Link
+              href="/user/confirmation"
+              onClick={closeModal}
+              className="mt-auto btn "
+            >
+              Confirm Selection
+            </Link>
+          </>
+        )}
       </div>
     </>
   );
