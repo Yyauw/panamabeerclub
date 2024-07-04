@@ -122,7 +122,7 @@ export default function ConfirmationPanel({
         sub.deliveryDate.setDate(sub?.deliveryDate.getDate() + 7);
         setSubscription(sub);
       }
-
+      data.fullName = `${data.name} ${data.lastName}`;
       setUserData(data);
       if (data.address.length > 0) {
         localStorage.setItem("address", data.address[0]._id);
@@ -220,11 +220,11 @@ export default function ConfirmationPanel({
               )}
             </div>
             <div className="txt-info-section text-black">
-              <p className="text-cbg my-3 capitalize">
-                <span className="notranslate font-bold capitalize">
+              <p className="text-cbg my-3 capitalize notranslate">
+                <span className="notranslate font-bold capitalize ">
                   Nombre:{" "}
                 </span>{" "}
-                {userData?.name + " " + userData?.lastName}
+                {userData?.fullName}
               </p>
               <p className="text-cbg my-3 ">
                 <span className="font-bold">Email: </span> {userData?.email}

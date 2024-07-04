@@ -209,7 +209,7 @@ export default function Navbar() {
                   className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
                 >
                   <li>
-                    <Link href="/">Home</Link>
+                    <Link href="/">Inicio</Link>
                   </li>
                   {/* 
                             <li>
@@ -245,7 +245,7 @@ export default function Navbar() {
             <div className="hidden lg:flex ms-auto">
               <ul className="menu menu-horizontal px-1 flex flex-row">
                 <li className="text-xl">
-                  <Link href="/">Home</Link>
+                  <Link href="/">Inicio</Link>
                 </li>
                 {/*                        <li>
                             <Link href="/sobre/nosotros">About</Link>
@@ -263,7 +263,9 @@ export default function Navbar() {
                   {isUserLogged ? (
                     <Link href="/user/catalog">Catalog</Link>
                   ) : (
-                    <Link href="/login">Login</Link>
+                    <Link href="/login" className="notranslate">
+                      Login
+                    </Link>
                   )}
                 </li>
               </ul>

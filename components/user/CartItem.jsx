@@ -12,7 +12,7 @@ export default function CartItem({ item, addItem, removeItem }) {
           alt={item.name}
         />
       </figure>
-      <h1 className="text-black text-xl col-span-2">{item.name}</h1>
+      <h1 className="notranslate text-black text-xl col-span-2">{item.name}</h1>
       <div className="flex flex-row ms-auto my-auto">
         {" "}
         <button

@@ -113,7 +113,7 @@ export default function SurveyPage({ setUserPreferences }) {
               className="btn btn-wide btn-primary mx-auto"
               onClick={() => onClickHandler("sum")}
             >
-              NEXT
+              SIGUIENTE
             </button>
           </div>
         </div>
