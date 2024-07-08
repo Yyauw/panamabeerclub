@@ -91,14 +91,7 @@ export default function LoginForm({
             <p>Forgot Your Password?</p>
           </Link>
         </div>
-        <button className="btn-auth">Login</button>
-
-        <p>Or</p>
-
-        <button className="btn-google">
-          <Image src={googleicon} alt="Google" />
-          <p>Continue with Google</p>
-        </button>
+        <button className="btn-auth text-black">Acceder</button>
 
         <div>
           <p>

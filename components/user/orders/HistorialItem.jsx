@@ -18,7 +18,9 @@ export default function HistorialItem({ order, index }) {
               />
             </figure>
             <div>
-              <div className="font-semibold text-black">{item?.beer?.name}</div>
+              <div className="font-semibold text-black notranslate">
+                {item?.beer?.name}
+              </div>
               <div className="text-gray-600">Cantidad: {item?.quantity}</div>
             </div>
           </div>

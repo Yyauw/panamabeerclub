@@ -144,16 +144,26 @@ export default function SignupForm({ createUser, redirect }) {
             id="terms"
             required
           />
-          <p>Accept terms & conditions</p>
+          <p>
+            Accept{" "}
+            <Link
+              href="terminos"
+              target="_blank"
+              className="underline text-primary"
+            >
+              terms & conditions
+            </Link>{" "}
+            and{" "}
+            <Link
+              href="privacidad"
+              target="_blank"
+              className="underline text-primary"
+            >
+              politicas de privacidad
+            </Link>
+          </p>
         </div>
         <button className="btn-auth text-black">Sign Up</button>
-
-        <p>Or</p>
-
-        <button className="btn-google">
-          <Image src={googleicon} alt="Google" />
-          <p>Sign Up with Google</p>
-        </button>
 
         <div>
           <p>

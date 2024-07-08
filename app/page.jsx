@@ -149,11 +149,13 @@ export default function Home() {
               <ul>
                 <li>
                   <Image src={checkpricing} alt="Check Pricing" />
-                  <span>6 Craft-beers</span>
+                  <span className="text-start">6 Craft-beers</span>
                 </li>
                 <li>
                   <Image src={checkpricing} alt="Check Pricing" />
-                  <span>20+ varieties of Craft-Beer</span>
+                  <span className="text-start">
+                    20+ varieties of Craft-Beer
+                  </span>
                 </li>
               </ul>
               <button className="btn-pricing mt-auto">Select</button>
@@ -161,24 +163,26 @@ export default function Home() {
           </div>
           <div className="pricing-card-brown">
             <div className="flex h-[100%] flex-col">
-              <h5>Basic</h5>
+              <h5>Experto</h5>
               <p>$29.99 Per Delivery</p>
               <ul>
                 <li>
                   <Image src={checkpricing} alt="Check Pricing" />
-                  <span>12 Craft-beers</span>
+                  <span className="text-start">12 Craft-beers</span>
                 </li>
                 <li>
                   <Image src={checkpricing} alt="Check Pricing" />
-                  <span>20+ varieties of Craft-Beer</span>
+                  <span className="text-start">
+                    20+ varieties of Craft-Beer
+                  </span>
                 </li>
                 <li>
                   <Image src={checkpricing} alt="Check Pricing" />
-                  <span>Merchandising</span>
+                  <span className="text-start">Merchandising</span>
                 </li>
                 <li>
                   <Image src={checkpricing} alt="Check Pricing" />
-                  <span>Informational Brochure</span>
+                  <span className="text-start">Informational Brochure</span>
                 </li>
               </ul>
 
@@ -187,28 +191,30 @@ export default function Home() {
           </div>
           <div className="pricing-card-blue">
             <div className="flex h-[100%] flex-col">
-              <h5>Basic</h5>
+              <h5>Guru</h5>
               <p>$49.99 Per Delivery</p>
               <ul>
                 <li>
                   <Image src={checkpricing} alt="Check Pricing" />
-                  <span>24 Craft-beers</span>
+                  <span className="text-start">24 Craft-beers</span>
                 </li>
                 <li>
                   <Image src={checkpricing} alt="Check Pricing" />
-                  <span>20+ varieties of Craft-Beer</span>
+                  <span className="text-start">
+                    20+ varieties of Craft-Beer
+                  </span>
                 </li>
                 <li>
                   <Image src={checkpricing} alt="Check Pricing" />
-                  <span>Merchandising</span>
+                  <span className="text-start">Merchandising</span>
                 </li>
                 <li>
                   <Image src={checkpricing} alt="Check Pricing" />
-                  <span>Informational Brochure</span>
+                  <span className="text-start">Informational Brochure</span>
                 </li>
                 <li>
                   <Image src={checkpricing} alt="Check Pricing" />
-                  <span>Special Rewards</span>
+                  <span className="text-start">Special Rewards</span>
                 </li>
               </ul>
 

@@ -125,7 +125,7 @@ export default function ConfirmationPage() {
   };
 
   return (
-    <div className="h-[87vh] flex items-center justify-center">
+    <div className="md:h-[87vh] flex items-center justify-center">
       <ConfirmationPanel
         fetchUser={fetchUser}
         fetchSubcription={fetchSubcription}

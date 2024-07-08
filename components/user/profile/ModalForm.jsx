@@ -82,7 +82,7 @@ export default function ModalForm({ modalRef, addNewAddress, setChange }) {
               Confirmar
             </button>
             <form method="dialog">
-              <button className="btn btn-primary">Close</button>
+              <button className="btn btn-primary">Cerrar</button>
             </form>
           </div>
         </div>

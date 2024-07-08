@@ -1,3 +1,4 @@
+"use client";
 import Link from "next/link";
 
 export default function Footer() {
@@ -10,27 +11,47 @@ export default function Footer() {
           <span className="notranslate">BeerClub</span>
         </h2>
         <p className="notranslate">PanamaBeerClub</p>
-        <p>Copyright © 2024 - All right reserved</p>
+        <p className="notranslate">Copyright © 2024 - All right reserved</p>
       </div>
       <div className="footer-sections">
         <div>
-          <h3>Services</h3>
-          <Link href={"/"}>Subscription</Link>
-          <Link href={"/"}>Pricing</Link>
-          <Link href={"/"}>Login</Link>
-          <Link href={"/"}>Sing Up</Link>
+          <h3 className="notranslate">Services</h3>
+          <Link className="notranslate" href={"/"}>
+            Subscription
+          </Link>
+          <Link className="notranslate" href={"/"}>
+            Pricing
+          </Link>
+          <Link className="notranslate" href={"/"}>
+            Login
+          </Link>
+          <Link className="notranslate" href={"/"}>
+            Sing Up
+          </Link>
         </div>
         <div>
-          <h3>Company</h3>
-          <Link href={"/"}>About Us</Link>
-          <Link href={"/"}>Contac</Link>
-          <Link href={"/"}>Jobs</Link>
+          <h3 className="notranslate">Company</h3>
+          <Link className="notranslate" href={"/"}>
+            About Us
+          </Link>
+          <Link className="notranslate" href={"/"}>
+            Contac
+          </Link>
+          <Link className="notranslate" href={"/"}>
+            Jobs
+          </Link>
         </div>
         <div>
-          <h3>Legal</h3>
-          <Link href={"/"}>Terms Of Use</Link>
-          <Link href={"/"}>Privacy Policy</Link>
-          <Link href={"/"}>Cookie Policy</Link>
+          <h3 className="notranslate">Legal</h3>
+          <Link className="notranslate" href={"/"}>
+            Terms Of Use
+          </Link>
+          <Link className="notranslate" href={"/"}>
+            Privacy Policy
+          </Link>
+          <Link className="notranslate" href={"/"}>
+            Cookie Policy
+          </Link>
         </div>
       </div>
     </footer>

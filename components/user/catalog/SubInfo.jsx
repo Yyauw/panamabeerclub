@@ -42,11 +42,13 @@ export default function SubInfo() {
             Plan {plan}
           </h1>
           <p className="notranslate text-cbg my-3 text-center">
-            <span className="notranslate font-bold">Beers: </span> {totalItems}/
-            {beerCapacity}
+            <span className="notranslate font-bold">Cervezas: </span>{" "}
+            {totalItems}/{beerCapacity}
           </p>
           <p className="text-center mt-4">
-            <button className="btn btn-primary btn-sm">Change Plan</button>
+            <Link href="/user/pricing" className="btn btn-primary btn-sm px-10">
+              Confirmar Seleccion
+            </Link>
           </p>
         </>
       )}

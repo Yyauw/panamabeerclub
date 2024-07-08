@@ -16,7 +16,7 @@ export default function CatalogPage() {
     <>
       <main className="p-4  mx-[5vw]">
         <section className="headerSection grid grid-rows-2 grid-cols-none md:grid-cols-5 md:grid-rows-none">
-          <div className="col-span-4">
+          <div className="col-span-3">
             <h1 className="text-2xl font-bold">
               Welcome to your craft beer section!
             </h1>
@@ -30,7 +30,7 @@ export default function CatalogPage() {
               </Link>
             </p>
           </div>
-          <div>
+          <div className="col-span-2">
             {" "}
             <SubInfo></SubInfo>
           </div>

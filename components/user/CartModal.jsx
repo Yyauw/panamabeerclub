@@ -37,7 +37,7 @@ export default function CartModal({ closeModal }) {
         className="backdrop fixed w-screen h-screen  top-0 left-0 bg-black/80 z-20 "
         onClick={closeModal}
       ></div>
-      <div className=" fixed w-[35vw] h-screen bg-primary z-40 top-0 right-0 p-4 flex flex-col">
+      <div className=" fixed w-[85vw] md:w-[35vw] h-screen bg-primary z-40 top-0 right-0 p-4 flex flex-col">
         <h1 className="text-3xl font-bold text-black text-center">Beer Cart</h1>
         <div className="border-2 rounded-md bg-secondary border-hidden px-3 my-2 grid-cols-2 grid">
           <p className="text-cbg my-3 ">

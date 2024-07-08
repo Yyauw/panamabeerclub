@@ -18,8 +18,8 @@ export async function POST(request) {
     ],
     subscription_data: { default_tax_rates: ["txr_1PVdg6IJkH0G341VPg2wkSdm"] },
     success_url:
-      "http://localhost:3000/user/transaction/success?session_id={CHECKOUT_SESSION_ID}",
-    cancel_url: "http://localhost:3000/user/transaction/cancel",
+      "http://localhost:3002/user/transaction/success?session_id={CHECKOUT_SESSION_ID}",
+    cancel_url: "http://localhost:3002/user/transaction/cancel",
   });
   console.log(session);
 

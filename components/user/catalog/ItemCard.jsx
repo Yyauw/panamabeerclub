@@ -53,8 +53,9 @@ export default function ItemCard({ beer }) {
             <h1 className="notranslate text-2xl font-bold uppercase mb-2">
               {beer.name}
             </h1>
-            <p>
-              <span className="notranslate font-bold">Style:</span> {beer.style}
+            <p className="notranslate">
+              <span className="notranslate font-bold">Estilo:</span>{" "}
+              {beer.style}
             </p>
             <p>
               <span className="font-bold">Body:</span> {beer.body}

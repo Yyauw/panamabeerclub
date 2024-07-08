@@ -57,6 +57,11 @@ export default function UserNavbar({ openModal, isUserLogged }) {
                     </Link>
                   </li>
                   <li>
+                    <h1 className="notranslate" onClick={openModal}>
+                      Carrito
+                    </h1>
+                  </li>
+                  <li>
                     <Link href="/logout" className="text-red-500">
                       Logout
                     </Link>

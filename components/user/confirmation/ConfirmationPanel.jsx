@@ -182,7 +182,7 @@ export default function ConfirmationPanel({
   return (
     <>
       <Modal modalRef={modalRef} content={content}></Modal>
-      <section className="border border-none bg-slate-50 w-[80vw] h-[85%] rounded-md grid grid-cols-2">
+      <section className="border my-10 md:my-0  border-none bg-slate-50 w-[100vw] md:w-[80vw] h-[85%] rounded-md grid grid-rows-2 md:grid-rows-none md:grid-cols-2">
         <div className="border border-none rounded-md bg-primary p-4 overflow-y-scroll">
           <h1 className="text-center text-3xl font-bold text-black">
             Cesta de cervezas
@@ -260,7 +260,12 @@ export default function ConfirmationPanel({
               </label>
             </div>
             <div className="direction-select mt-auto">
-              <h1 className="text-black font-bold ">Direccion de envio</h1>
+              <h1 className="text-black font-bold ">
+                Direccion de envio - No tienes direccion?,
+                <Link href="/user/profile" className="underline text-secondary">
+                  Agregalo aqui
+                </Link>
+              </h1>
 
               <select
                 className="select select-bordered w-full"
